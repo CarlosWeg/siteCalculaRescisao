@@ -35,8 +35,9 @@ class CalculoRescisaoController{
     public function calcular(){
         $aDados = $this->validarEntrada();
 
-        if (!$aDados || $aDados === false){
-            GerenciadorMensagemUtil::definirMensagem('Dados inválidos ou método de requisição incorreto. Tente novamente','/','erro');   
+        if (!$aDados || $aDados == false){
+            GerenciadorMensagemUtil::definirMensagem('Dados inválidos ou método de requisição incorreto. Tente novamente','/','erro');  
+            return; 
         }
 
         $oCalculoRescisao = new CalculoRescisaoModel($aDados);
@@ -46,6 +47,7 @@ class CalculoRescisaoController{
             'resultado' => $aResultado,
             'dados_funcionario' => $aDados
         ];
+
 
     }
 
