@@ -2,7 +2,7 @@
 
 namespace App\Utils;
 
-class MetaTags{
+class MetaTagsUtil{
     private $sTitle;
     private $sDescription;
     private $sKeyWords;
@@ -15,7 +15,7 @@ class MetaTags{
     
         $this->sTitle = $sTitle ?: 'Calculadora de Rescisão Trabalhista | Calcule Seus Direitos'; 
         $this->sDescription = $sDescription ?: 'Calcule sua indenização de forma rápida e precisa. Confira informações sobre rescisão trabalhista';
-        $this->sKewWords = $sKeyWords ?: 'calculadora rescisão, indenização trabalhista, direitos trabalhistas, cálculo de demissão, rescisão CLT';
+        $this->sKeyWords = $sKeyWords ?: 'calculadora rescisão, indenização trabalhista, direitos trabalhistas, cálculo de demissão, rescisão CLT';
         $this->sOgTitle = $sOgTitle ?: $sTitle;
         $this->sOgDescription = $sOgDescription ?: $sOgDescription;
         $this->sOgImage = $sOgImage ?: 'https://seusite.com/imagem-compartilhamento.jpg';
@@ -43,8 +43,8 @@ class MetaTags{
                     <meta name="robots" content="index,follow">
 
                     <meta property="og:title" content="{$aTags['ogtitle']}">
-                    <meta property="og:description" content = "{$aTags['ogdescription']}">
-                    <meta property="og:image" content="{$aTags['ogimage']}">;
+                    <meta property="og:description" content ="{$aTags['ogdescription']}">
+                    <meta property="og:image" content="{$aTags['ogimage']}">
 
                 HTML;
                 

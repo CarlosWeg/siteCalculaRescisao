@@ -48,7 +48,6 @@ class CalculoRescisaoController{
             'dados_funcionario' => $aDados
         ];
 
-
     }
 
-}                                                               
+}

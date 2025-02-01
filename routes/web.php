@@ -1,3 +1,3 @@
 <?php
 
-use Core\Router\Router;
+$oRouter->addRota('GET', '/', [\App\Controllers\HomeController::class,'index']);

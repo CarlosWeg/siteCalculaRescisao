@@ -1,6 +1,7 @@
 <?php
 
-namespace Core\Router;
+namespace Core;
+
 
 class Router{
 
@@ -16,14 +17,15 @@ class Router{
 
     }
 
-
     public function resolver($sMetodoRequest, $sRequestUri){
+
+        $sRequestUri = str_replace('/siteCalculoRescisao','',$sRequestUri);
 
         // Percorre todas as rotas registradas
         foreach($this->aRotas as $rota){
             
             // Verifica se o metodo HTTP e o caminho da rota registrada coincide com a requisição
-            if ($rota['metodo'] == strtoupper($sMetodoRequest) && $rota['caminho'] == $sRequesUri){
+            if ($rota['metodo'] == strtoupper($sMetodoRequest) && $rota['caminho'] == $sRequestUri){
 
                 // Se a ação da rota for uma função, executa diretamente
                 if (is_callable($rota['acao'])){

@@ -1,6 +1,6 @@
 <?php
 
-namespace Utils\CabecalhoUtil;
+namespace App\Utils;
 use App\Utils\MetaTagsUtil;
 
 
@@ -9,7 +9,7 @@ class HeadUtil{
     private $aLinksCss = [];
     private $aLinksJs = [];
 
-    public function __construct(MetaTags $oMetaTags){
+    public function __construct(MetaTagsUtil $oMetaTags){
         $this->oMetaTags = $oMetaTags ?? new MetaTags();
     }
 
@@ -23,8 +23,11 @@ class HeadUtil{
 
     public function renderizar(){
 
-        $this->oMetaTags->renderizar();
+        echo '<!DOCTYPE html>';
+        echo '<html lang = "pt-BR">';
+        echo '<head>';
 
+        $this->oMetaTags->renderizar();
 
         foreach($this->aLinksCss as $css){
             echo "\n<link rel='stylesheet' href={$css}>";
@@ -33,6 +36,8 @@ class HeadUtil{
         foreach($this->aLinksJs as $js){
             echo "\n<script src='{$js}'></script>";
         }
+
+        echo '</head>';
 
     }
 

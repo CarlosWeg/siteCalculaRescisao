@@ -1,4 +1,4 @@
-<form id = "formulario_rescisao" method = "POST">
+<form id = "formulario_rescisao" action = "/calcular_rescisao" method = "POST">
 
     <label for = "salario_bruto">Salário Bruto*</label>
     <input type = "number" name = "salario_bruto" id = "salario_bruto" min = "0" step = "0.01" placeholder = "R$:0,00" required>

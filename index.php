@@ -10,9 +10,9 @@ ini_set('display_errors',1);
 
 require_once 'vendor/autoload.php';
 
-use Core\Router\Router;
-
+use Core\Router;
 $oRouter = new Router();
+
 require_once 'routes/web.php';
 
 $sMetodo = $_SERVER['REQUEST_METHOD'];
