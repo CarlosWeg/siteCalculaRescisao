@@ -14,14 +14,15 @@ class CalculoRescisaoModel{
     private $aTempoTrabalhado;
 
     public function __construct($aDados){
+
         $this->fSalarioBruto = $aDados['salario_bruto'];
         $this->dDataContratacao = $aDados['data_contratacao'];
         $this->dDataDemissao = $aDados['data_demissao'];
         $this->sMotivoRescisao = $aDados['motivo_rescisao'];
         $this->sTipoAvisoPrevio = $aDados['tipo_aviso_previo'];
-        $this->fSaldoFgtsAntes = $aDados['saldo_fgts_antes'];
-        $this->iNumeroDependentes = $aDados['numero_dependentes'];
-        $this->bFeriasVencidas = $aDados['ferias_vencidas'];
+        $this->fSaldoFgtsAntes = $aDados['saldo_fgts_antes'] ?? 0;
+        $this->iNumeroDependentes = $aDados['numero_dependentes'] ?? 0;
+        $this->bFeriasVencidas = $aDados['ferias_vencidas'] ?? false;
         $this->aTempoTrabalhado = $this->calcularTempoServico();
     }
 

@@ -2,7 +2,7 @@
     <nav>
 
         <a href = "/">
-        <img src="images/logo_calcula_rescisao.png" alt = "Logo do site Calcula Rescisão">
+            <img src="images/logo_calcula_rescisao.png" alt = "Logo do site Calcula Rescisão">
             <span class = "titulo-site">Calcula Rescisão</span>
         </a>
 
@@ -16,3 +16,4 @@
     </nav>
 
 </header>
+<body>

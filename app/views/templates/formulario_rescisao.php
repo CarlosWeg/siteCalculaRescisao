@@ -1,7 +1,7 @@
-<form id = "formulario_rescisao" action = "/calcular_rescisao" method = "POST">
+<form id = "formulario_rescisao">
 
     <label for = "salario_bruto">Salário Bruto*</label>
-    <input type = "number" name = "salario_bruto" id = "salario_bruto" min = "0" step = "0.01" placeholder = "R$:0,00" required>
+    <input type = "number" name = "salario_bruto" id = "salario_bruto" min = "0" placeholder = "R$:0,00" required>
 
     <label for = "data_contratacao">Data de contratação*</label>
     <input type = "date" name = "data_contratacao" id = "data_contratacao" required>
@@ -24,15 +24,15 @@
     </select>
 
     <label for = "saldo_fgts_antes">Saldo do FGTS antes da contratação</label>
-    <input type = "number" name = "saldo_fgts_antes" id = "saldo_fgts_antes" min = "0" step = "0.01" placeholder = "R$:0,00" value = "0">
+    <input type = "number" name = "saldo_fgts_antes" id = "saldo_fgts_antes" min = "0" placeholder = "R$:0,00">
 
     <label for = "numero_dependentes">Número de dependentes</label>
-    <input type = "number" name = "numero_dependentes" id = "numero_dependentes" step = "1" min = "0" placeholder = "0" value = "0">
+    <input type = "number" name = "numero_dependentes" id = "numero_dependentes" step = "1" min = "0" placeholder = "0">
 
     <label for = "ferias_vencidas">Possui férias vencidas?</label>
     <input type = "checkbox" name = "ferias_vencidas" id = "ferias_vencidas" value = "true">
 
-    <button type = "submit">Calcular</button>
-    <button type = "reset">Limpar</button>
+    <button type="button" onclick="validarFormulario()">Calcular</button>
+    <button type="reset">Limpar</button>
 
 </form>    

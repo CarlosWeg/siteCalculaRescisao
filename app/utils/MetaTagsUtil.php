@@ -39,15 +39,13 @@ class MetaTagsUtil{
                     <title>{$aTags['title']}</title>
                     <meta name="description" content="{$aTags['description']}">
                     <meta name="keywords" content="{$aTags['keywords']}">
-                    <meta name="viewport" content="width=device_width, initial-scale=1">
+                    <meta name="viewport" content="width=device-width, initial-scale=1">
                     <meta name="robots" content="index,follow">
 
                     <meta property="og:title" content="{$aTags['ogtitle']}">
                     <meta property="og:description" content ="{$aTags['ogdescription']}">
                     <meta property="og:image" content="{$aTags['ogimage']}">
-
                 HTML;
-                
     }
 
 }
