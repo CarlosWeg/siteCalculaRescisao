@@ -1,13 +1,13 @@
 <form id = "formulario_rescisao">
 
     <label for = "salario_bruto">Salário Bruto*</label>
-    <input type = "number" name = "salario_bruto" id = "salario_bruto" min = "0" placeholder = "R$:0,00" required>
+    <input type = "number" name = "salario_bruto" id = "salario_bruto" min = "0" placeholder = "R$:0,00" value = "1500" required>
 
     <label for = "data_contratacao">Data de contratação*</label>
-    <input type = "date" name = "data_contratacao" id = "data_contratacao" required>
+    <input type = "date" name = "data_contratacao" id = "data_contratacao" value = "2020-01-01" required>
 
     <label for = "data_demissao">Data de demissão*</label>
-    <input type = "date" name = "data_demissao" id = "data_demissao" required>
+    <input type = "date" name = "data_demissao" id = "data_demissao" value = "2021-01-01" required>
 
     <label for = "motivo_rescisao">Motivo da rescisão*</label>
     <select id = "motivo_rescisao" name = "motivo_rescisao" required>

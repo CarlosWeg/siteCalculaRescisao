@@ -4,4 +4,14 @@
 
 <?php include_once 'app/views/templates/formulario_rescisao.php';?>
 
-<p><small><strong>Atenção:</strong>Os valores e informações apresentadas podem conter impresições, trate-os como uma simulação. Esta ferramenta não substitui o acompanhamento de um profissional qualificado da área trabalhista.</small></p>
+<p><small><strong>Atenção:</strong>Os valores e informações apresentadas podem conter imprecisões, trate-os como uma simulação. Esta ferramenta não substitui o acompanhamento de um profissional qualificado da área trabalhista.</small></p>
+
+<div id = "container_resultado">
+
+    <div id = "resultado_resumo" class = "resultado">
+    </div>
+
+    <div id = "resultado_detalhe" class = "resultado">
+    </div>
+
+</div>

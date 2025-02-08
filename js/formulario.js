@@ -11,6 +11,7 @@ function validarFormulario(){
     let oSaldoFgtsAntes = document.getElementById("saldo_fgts_antes");
     let oNumeroDependentes = document.getElementById("numero_dependentes");
     let oFeriasVencidas = document.getElementById("ferias_vencidas");
+    let oMensagem = document.getElementById("mensagem_sistema");
 
     let oForm = document.getElementById("formulario_rescisao"); 
     
@@ -18,53 +19,53 @@ function validarFormulario(){
 
     if (oSalarioBruto.value == ""){
         sTexto = "O campo salário bruto é obrigatório";
-        definirAviso(sTexto,oSalarioBruto);
+        definirAviso(sTexto,oSalarioBruto,"aviso");
         return false;
     }
 
     if (isNaN(oSalarioBruto.value) || oSalarioBruto.value <= 0){
         sTexto = "O campo salário bruto não pode ser negativo";
-        definirAviso(sTexto,oSalarioBruto);
+        definirAviso(sTexto,oSalarioBruto,"aviso");
         return false;
     }
 
     if (oDataContratacao.value == ""){
         sTexto = "O campo data de contratação é obrigatório";
-        definirAviso(sTexto,oDataContratacao);
+        definirAviso(sTexto,oDataContratacao,"aviso");
         return false;
     }
 
     if (oDataDemissao.value == ""){
         sTexto = "O campo data de demissão é obrigatório";
-        definirAviso(sTexto,oDataDemissao);
+        definirAviso(sTexto,oDataDemissao,"aviso");
         return false;
     }
 
     if (!validarDatas(oDataContratacao.value,oDataDemissao.value)){
         sTexto = "A data de demissão deve ser posterior à data de contratação";
-        definirAviso(sTexto,oDataDemissao);
+        definirAviso(sTexto,oDataDemissao,"aviso");
         return false;
     }
 
     if (oMotivoRescisao.value == ""){
         sTexto = "O campo motivo de rescisão é obrigatório";
-        definirAviso(sTexto,oMotivoRescisao);
+        definirAviso(sTexto,oMotivoRescisao,"aviso");
         return false;
     }
 
     if (oTipoAvisoPrevio.value == ""){
         sTexto = "O campo tipo de aviso prévio é obrigatório";
-        definirAviso(sTexto,oTipoAvisoPrevio);
+        definirAviso(sTexto,oTipoAvisoPrevio,"aviso");
         return false;
     }
 
-    if (oSaldoFgtsAntes.value === "" || isNaN(Number(oSaldoFgtsAntes.value))) {
+    if (oSaldoFgtsAntes.value === "" || isNaN((oSaldoFgtsAntes.value))) {
         oSaldoFgtsAntes.value = 0;
     }
     
-    if (Number(oSaldoFgtsAntes.value) < 0) {
+    if ((oSaldoFgtsAntes.value) < 0) {
         sTexto = "O saldo do FGTS não pode ser negativo";
-        definirAviso(sTexto, oSaldoFgtsAntes);
+        definirAviso(sTexto, oSaldoFgtsAntes,"aviso");
         return false;
     }
 
@@ -74,7 +75,7 @@ function validarFormulario(){
 
     if (oNumeroDependentes.value < 0){
         sTexto = "O campo número de dependentes não pode ser negativo";
-        definirAviso(sTexto,oNumeroDependentes);
+        definirAviso(sTexto,oNumeroDependentes,"aviso");
         return false;    
     }
 
@@ -92,7 +93,7 @@ function validarFormulario(){
 
         enviarDadosRescisao(oDados);
 
-        return false;    
+        return false;
 
     }
 
@@ -105,11 +106,30 @@ function validarDatas(sDataContratacao,sDataDemissao){
     return dDataDemissao > dDataContratacao;
 }
 
-function definirAviso(sTexto,oFocus){
+function obterIcone(sTipo){
+
+    switch(sTipo){
+
+        case "aviso":
+            return "⚠";
+
+        case "sucesso":
+            return "✓";
+
+        case "erro":
+            return "✕";
+
+        default:
+            return "⚠";
+
+    }
+}
+
+function definirAviso(sTexto,oFocus,sTipo){
 
     removerMensagem();
 
-    let sIcone = "⚠";
+    let sIcone = obterIcone(sTipo);
 
     let sMensagem = `
         <div id='mensagem_sistema' class='mensagem_sistema'>
@@ -119,12 +139,12 @@ function definirAviso(sTexto,oFocus){
     `;
 
     document.body.insertAdjacentHTML('beforeend', sMensagem);
+    temporizadorMensagem();
 
     if (oFocus){
         oFocus.focus();
     } 
 
-    temporizadorMensagem();
 }
 
 function removerMensagem(){
@@ -138,5 +158,5 @@ function removerMensagem(){
 function temporizadorMensagem(){
     setTimeout(() => {
         removerMensagem();
-    },5000);
+    },"5000");
 }
