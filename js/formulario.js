@@ -2,7 +2,26 @@ window.onload = function(){
     temporizadorMensagem();
 }
 
-function validarFormulario(){
+function validarFormularioSugestao(){
+    let oMensagemContato = document.getElementById("mensagem_contato");
+
+    let oForm = document.getElementById("formulario_sugestao");
+
+    let sTexto = "";
+
+    if (oMensagemContato.value == ""){
+        sTexto = "O campo de mensagem é obrigatório";
+        definirAviso(sTexto,oMensagemContato,"aviso");
+        return;
+    }
+
+    if (sTexto ===""){
+        oForm.submit();
+    }
+
+}
+
+function validarFormularioRescisao(){
     let oSalarioBruto = document.getElementById("salario_bruto");
     let oDataContratacao = document.getElementById("data_contratacao");
     let oDataDemissao = document.getElementById("data_demissao");

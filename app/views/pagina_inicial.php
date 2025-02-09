@@ -16,11 +16,9 @@
     
     <section id="container_resultado" class="container-resultado container">
 
-        <div id = "resultado_resumo" class = "resultado">
-        </div>
+        <div id = "resultado_resumo" class = "resultado"></div>
 
-        <div id = "resultado_detalhe" class = "resultado">
-        </div>
+        <div id = "resultado_detalhe" class = "resultado"></div>
 
     </section>
 

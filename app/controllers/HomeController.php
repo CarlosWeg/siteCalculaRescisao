@@ -34,6 +34,7 @@ class HomeController{
     public function sugestoes(){
         $oMetaTagsSugestoes = new MetaTagsUtil();
         $oHeadUtilSugestoes = new HeadUtil($oMetaTagsSugestoes);
+        $oHeadUtilSugestoes->adicionarLinksJs('js/formulario.js');
         $oHeadUtilSugestoes->renderizar();
         require_once self::CAMINHO_VIEWS_HEADER;
         require_once self::CAMINHO_VIEWS . '/sugestoes.php';
