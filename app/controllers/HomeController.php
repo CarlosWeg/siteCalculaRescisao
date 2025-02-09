@@ -22,4 +22,22 @@ class HomeController{
         require_once self::CAMINHO_VIEWS_FOOTER;
     }
 
+    public function perguntasFrequentes(){
+        $oMetaTagsPerguntas = new MetaTagsUtil();
+        $oHeadUtilPerguntas = new HeadUtil($oMetaTagsPerguntas);
+        $oHeadUtilPerguntas->renderizar();
+        require_once self::CAMINHO_VIEWS_HEADER;
+        require_once self::CAMINHO_VIEWS . '/perguntas_frequentes.php';
+        require_once self::CAMINHO_VIEWS_FOOTER;
+    }
+
+    public function sugestoes(){
+        $oMetaTagsSugestoes = new MetaTagsUtil();
+        $oHeadUtilSugestoes = new HeadUtil($oMetaTagsSugestoes);
+        $oHeadUtilSugestoes->renderizar();
+        require_once self::CAMINHO_VIEWS_HEADER;
+        require_once self::CAMINHO_VIEWS . '/sugestoes.php';
+        require_once self::CAMINHO_VIEWS_FOOTER;
+    }
+
 }

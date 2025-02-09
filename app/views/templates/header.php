@@ -1,5 +1,5 @@
 <header>
-    <nav>
+    <nav class = "menu_navegacao">
 
         <a href = "/">
             <img src="images/logo_calcula_rescisao.png" alt = "Logo do site Calcula Rescisão">

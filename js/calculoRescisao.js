@@ -1,4 +1,5 @@
 let oResultadoCalculo;
+let bResultadosVisiveis = false;
 
 async function enviarDadosRescisao(oDados){
     try{
@@ -28,12 +29,34 @@ async function enviarDadosRescisao(oDados){
     }
 }
 
+function formatarMoeda(fValor){
+    return fValor.toLocaleString('pt-BR',{
+        style: 'currency',
+        currency: 'BRL'
+    });
+}
+
+
+function toggleDetalhesCalculo(){
+    let oDivResultadoDetalhe = document.getElementById("resultado_detalhe");
+    let oBotaoDetalhesCalculo = document.getElementById("botao_detalhes_calculo");
+
+    if (bResultadosVisiveis === true){
+        oDivResultadoDetalhe.innerHTML = '';
+        oBotaoDetalhesCalculo.innerText = 'Exibir detalhes do cálculo';
+        bResultadosVisiveis = false;
+    } else {
+        exibirDetalhesCalculo();
+        oBotaoDetalhesCalculo.innerText = 'Ocultar detalhes do cálculo';
+        bResultadosVisiveis = true;
+    }
+
+}
+
 function exibirResultado(){
     definirAviso("Cáculo realizado com sucesso!",null,"sucesso");
 
     let oDivResultadoResumo = document.getElementById("resultado_resumo");
-
-    console.log(oResultadoCalculo);
 
     let sHtml = `
                 <h2>Resumo do resultado</h2>
@@ -60,18 +83,16 @@ function exibirResultado(){
 
                 </table>
 
-                <button type="button" onclick="exibirDetalhesCalculo()">Exibir Detalhes do Cálculo</button>
+                <button type="button" id="botao_detalhes_calculo" onclick="toggleDetalhesCalculo()">Exibir Detalhes do Cálculo</button>
 
                 `;
 
     oDivResultadoResumo.innerHTML = sHtml;
-}
 
-function formatarMoeda(fValor){
-    return fValor.toLocaleString('pt-BR',{
-        style: 'currency',
-        currency: 'BRL'
-    });
+    if (bResultadosVisiveis){
+        exibirDetalhesCalculo;    
+    }
+
 }
 
 function exibirDetalhesCalculo(){
@@ -83,7 +104,7 @@ function exibirDetalhesCalculo(){
     let oDivResultadoDetalhe = document.getElementById("resultado_detalhe");
 
     let sHtml = `
-            <h2>Detalhes do resultado</h2>
+            <h2>Detalhes do cálculo</h2>
 
             <h3>Proventos</h3>
 
@@ -100,7 +121,7 @@ function exibirDetalhesCalculo(){
 
                 <tr>
                     <td>Aviso prévio</td>
-                    <td>${formatarMoeda(oProventos.saldo_salario)}</td>
+                    <td>${formatarMoeda(oProventos.aviso_previo)}</td>
                 </tr>
 
 

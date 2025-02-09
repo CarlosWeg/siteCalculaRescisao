@@ -92,10 +92,9 @@ function validarFormulario(){
         };
 
         enviarDadosRescisao(oDados);
-
-        return false;
-
     }
+    
+    return;
 
 }
 

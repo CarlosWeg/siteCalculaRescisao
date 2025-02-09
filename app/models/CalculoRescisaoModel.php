@@ -67,7 +67,7 @@ class CalculoRescisaoModel{
 
     private function calcularAvisoPrevio(){
         if ($this->sTipoAvisoPrevio === 'indenizado'){
-            $iDiasAviso = 30 + min(3 * $this->aTempoTrabalhado['anos'] , 60);
+            $iDiasAviso = 30 + min(3 * $this->aTempoTrabalhado['anos'] , 90);
             return ($this->fSalarioBruto / 30) * $iDiasAviso;
         }
         return 0;
@@ -97,12 +97,12 @@ class CalculoRescisaoModel{
 
     private function calcularInss($fValor){
         //Tabela INSS 2025
-        if ($fValor <= 1518.00) return $fValor * 0.075;
-        if ($fValor <= 2793.88) return $fValor * 0.09;
-        if ($fValor <= 4190.83) return $fValor * 0.12;
-        if ($fValor <= 8157.41) return $fValor * 0.14;
+        if ($fValor <= 1518.00) return ($fValor * 0.075) - 0;
+        if ($fValor <= 2793.88) return ($fValor * 0.09) - 22.77;
+        if ($fValor <= 4190.83) return ($fValor * 0.12) - 106.6;
+        if ($fValor <= 8157.41) return ($fValor * 0.14) - 190.4;
         
-        return 951.62; // Teto
+        return 951.63;
 
     }
 
