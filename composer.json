@@ -6,5 +6,7 @@
             "Core\\": "core/"
         }
     },
-    "require": {}
+    "require": {
+        "phpmailer/phpmailer": "^6.9"
+    }
 }

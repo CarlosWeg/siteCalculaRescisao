@@ -14,8 +14,8 @@ class HomeController{
     public function index(){
         $oMetaTagsIndex = new MetaTagsUtil();
         $oHeadUtilIndex = new HeadUtil($oMetaTagsIndex);
-        $oHeadUtilIndex->adicionarLinksJs('js/formulario.js');
-        $oHeadUtilIndex->adicionarLinksJs('js/calculoRescisao.js');
+        $oHeadUtilIndex->adicionarLinksJs('js/formularioRescisao.js');
+        $oHeadUtilIndex->adicionarLinksJs('js/mensagem.js');
         $oHeadUtilIndex->renderizar();
         require_once self::CAMINHO_VIEWS_HEADER;
         require_once self::CAMINHO_VIEWS . '/pagina_inicial.php';
@@ -34,7 +34,8 @@ class HomeController{
     public function sugestoes(){
         $oMetaTagsSugestoes = new MetaTagsUtil();
         $oHeadUtilSugestoes = new HeadUtil($oMetaTagsSugestoes);
-        $oHeadUtilSugestoes->adicionarLinksJs('js/formulario.js');
+        $oHeadUtilSugestoes->adicionarLinksJs('js/formularioSugestao.js');
+        $oHeadUtilSugestoes->adicionarLinksJs('js/mensagem.js');
         $oHeadUtilSugestoes->renderizar();
         require_once self::CAMINHO_VIEWS_HEADER;
         require_once self::CAMINHO_VIEWS . '/sugestoes.php';

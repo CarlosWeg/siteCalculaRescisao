@@ -6,3 +6,4 @@ $oRouter->addRota('POST', '/calculo-rescisao', [\App\Controllers\CalculoRescisao
 $oRouter->addRota('GET','/perguntas-frequentes',[\App\Controllers\HomeController::class,'perguntasFrequentes']);
 
 $oRouter->addRota('GET','/sugestoes',[\App\Controllers\HomeController::class,'sugestoes']);
+$oRouter->addRota('POST','/enviar-sugestao',[\App\Controllers\SugestaoController::class,'enviar']);

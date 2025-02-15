@@ -1,5 +1,6 @@
-let oResultadoCalculo;
+let oResultadoCalculo = null;
 let bResultadosVisiveis = false;
+
 
 async function enviarDadosRescisao(oDados){
     try{

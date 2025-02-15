@@ -4,88 +4,64 @@ namespace App\Controllers;
 use App\Models\CalculoRescisaoModel;
 use App\Utils\SanitizarEntradaUtil;
 use App\Utils\GerenciadorMensagemUtil;
+use App\Utils\enviarRetornoUtil;
 
-class CalculoRescisaoController{
+class CalculoRescisaoController extends BaseController{
 
     public function __construct(){
-        header('Content-Type: application/json');
-    }
-
-    private function enviarResposta($aDados, $iStatus = 200){
-        http_response_code($iStatus);
-        echo json_encode($aDados);
-        exit;
-    }
-
-    private function enviarErro($sMensagem,$iStatus = 400){
-        $this->enviarResposta(['erro'=>$sMensagem],$iStatus);
+        parent::__construct();
     }
 
     public function validarEntrada(){
 
-        if ($_SERVER['REQUEST_METHOD'] !== 'POST' || empty($_SERVER['CONTENT_TYPE']) || stripos($_SERVER['CONTENT_TYPE'], 'application/json') === false) {
-            $this->enviarErro('Requisição inválida');
+        $aDados = parent::validarEntradaBasica();
+
+        $aDadosSanitizados = [
+            'salario_bruto' => SanitizarEntradaUtil::sanitizarEntrada($aDados['salario_bruto'], 'float'),
+            'data_contratacao' => SanitizarEntradaUtil::sanitizarEntrada($aDados['data_contratacao'], 'data'),
+            'data_demissao' => SanitizarEntradaUtil::sanitizarEntrada($aDados['data_demissao'], 'data'),
+            'motivo_rescisao' => SanitizarEntradaUtil::sanitizarEntrada($aDados['motivo_rescisao'], 'string'),
+            'tipo_aviso_previo' => SanitizarEntradaUtil::sanitizarEntrada($aDados['tipo_aviso_previo'], 'string'),
+            'saldo_fgts_antes' => SanitizarEntradaUtil::sanitizarEntrada($aDados['saldo_fgts_antes'], 'float'),
+            'numero_dependentes' => SanitizarEntradaUtil::sanitizarEntrada($aDados['numero_dependentes'], 'inteiro'),
+            'ferias_vencidas' => isset($aDados['ferias_vencidas']) ? (bool)$aDados['ferias_vencidas'] : false
+        ];
+
+        $aCamposObrigatorios = ['salario_bruto','data_contratacao','data_demissao','motivo_rescisao','tipo_aviso_previo'];
+
+        foreach ($aCamposObrigatorios as $sCampo){
+            if (!isset($aDadosSanitizados[$sCampo]) || empty($aDadosSanitizados[$sCampo])){
+                throw new \Exception('Campo obrigatório não fornecido: {$sCampo}');
+            }
         }
 
-        $oJsonInput = file_get_contents('php://input');
-        $aDados = json_decode($oJsonInput,true);
-
-        if (!$aDados){
-            $this->enviarErro('Dados não recebidos corretamente');
+        $aMotivosPermitidos = ['pedido_demissao','dispensa_sem_justa_causa','dispensa_com_justa_causa','rescisao_acordo'];
+        if (!in_array($aDadosSanitizados['motivo_rescisao'], $aMotivosPermitidos)) {
+            throw new \Exception('Motivo de rescisão inválido');
         }
 
-        try{
-
-            $aDadosSanitizados = [
-                'salario_bruto' => SanitizarEntradaUtil::sanitizarEntrada($aDados['salario_bruto'], 'float'),
-                'data_contratacao' => SanitizarEntradaUtil::sanitizarEntrada($aDados['data_contratacao'], 'data'),
-                'data_demissao' => SanitizarEntradaUtil::sanitizarEntrada($aDados['data_demissao'], 'data'),
-                'motivo_rescisao' => SanitizarEntradaUtil::sanitizarEntrada($aDados['motivo_rescisao'], 'string'),
-                'tipo_aviso_previo' => SanitizarEntradaUtil::sanitizarEntrada($aDados['tipo_aviso_previo'], 'string'),
-                'saldo_fgts_antes' => SanitizarEntradaUtil::sanitizarEntrada($aDados['saldo_fgts_antes'], 'float'),
-                'numero_dependentes' => SanitizarEntradaUtil::sanitizarEntrada($aDados['numero_dependentes'], 'inteiro'),
-                'ferias_vencidas' => isset($aDados['ferias_vencidas']) ? (bool)$aDados['ferias_vencidas'] : false
-            ];
-
-            $aCamposObrigatorios = ['salario_bruto','data_contratacao','data_demissao','motivo_rescisao','tipo_aviso_previo'];
-
-            foreach ($aCamposObrigatorios as $sCampo){
-                if (!isset($aDadosSanitizados[$sCampo]) || empty($aDadosSanitizados[$sCampo])){
-                    $this->enviarErro(("Campo obrigatório não fornecido: {$sCampo}"));
-                }
-            }
-
-            $aMotivosPermitidos = ['pedido_demissao','dispensa_sem_justa_causa','dispensa_com_justa_causa','rescisao_acordo'];
-            if (!in_array($aDadosSanitizados['motivo_rescisao'], $aMotivosPermitidos)) {
-                $this->enviarErro('Motivo de rescisão inválido');
-            }
-    
-            $aTiposAvisoPermitidos = ['indenizado', 'trabalhado'];
-            if (!in_array($aDadosSanitizados['tipo_aviso_previo'], $aTiposAvisoPermitidos)) {
-                $this->enviarErro('Tipo de aviso prévio inválido');
-            }
-
-            if ($aDadosSanitizados['salario_bruto'] <= 0){
-                $this->enviarErro('Salário bruto deve ser maior que zero');
-            }
-
-            if (isset($aDadosSanitizados['saldo_fgts_antes']) && $aDadosSanitizados['saldo_fgts_antes'] < 0){
-                $this->enviarErro('Saldo FGTS não pode ser negativo');
-            }
-
-            if ($aDadosSanitizados['data_contratacao'] > $aDadosSanitizados['data_demissao']){
-                $this->enviarErro('Data de contratação não pode ser superior a data de demissão');
-            }
-
-            if ($aDadosSanitizados['numero_dependentes'] < 0){
-                $this->enviarErro('Número de dependentes não pode ser negativo');
-            }
-
-            return $aDadosSanitizados; 
-        
-        } catch(\Exception $e){
-            $this->enviarErro('Dados inválidos');
+        $aTiposAvisoPermitidos = ['indenizado', 'trabalhado'];
+        if (!in_array($aDadosSanitizados['tipo_aviso_previo'], $aTiposAvisoPermitidos)) {
+            throw new \Exception('Tipo de aviso prévio inválido');
         }
+
+        if ($aDadosSanitizados['salario_bruto'] <= 0){
+            throw new \Exception('Salário bruto deve ser maior que zero');
+        }
+
+        if (isset($aDadosSanitizados['saldo_fgts_antes']) && $aDadosSanitizados['saldo_fgts_antes'] < 0){
+            throw new \Exception('Saldo FGTS não pode ser negativo');
+        }
+
+        if ($aDadosSanitizados['data_contratacao'] > $aDadosSanitizados['data_demissao']){
+            throw new \Exception('Data de contratação não pode ser superior a data de demissão');
+        }
+
+        if ($aDadosSanitizados['numero_dependentes'] < 0){
+            throw new \Exception('Número de dependentes não pode ser negativo');
+        }
+
+        return $aDadosSanitizados; 
     }
 
     public function calcular(){
@@ -94,13 +70,13 @@ class CalculoRescisaoController{
             $oCalculoRescisao = new CalculoRescisaoModel($aDados);
             $aResultado = $oCalculoRescisao->calcularRescisao();
 
-            $this->enviarResposta([
+            enviarRetornoUtil::enviarResposta([
                 'status' => 'sucesso',
                 'resultado' => $aResultado
             ]);
         
         } catch (\Exception $e){
-            $this->enviarErro('Erro ao calcular a rescisão : ' . $e->getMessage());
+            enviarRetornoUtil::enviarErro('Erro ao calcular a rescisão:' . $e->getMessage());
         }
 
     }
