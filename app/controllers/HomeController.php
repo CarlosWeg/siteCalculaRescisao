@@ -16,7 +16,7 @@ class HomeController{
         $oHeadUtilIndex = new HeadUtil($oMetaTagsIndex);
         $oHeadUtilIndex->adicionarLinksJs('js/formularioRescisao.js');
         $oHeadUtilIndex->adicionarLinksJs('js/mensagem.js');
-        $oHeadUtilIndex->adicionarLinksCss('./output.css');
+        $oHeadUtilIndex->adicionarLinksCss('css/output.css');
         $oHeadUtilIndex->renderizar();
         require_once self::CAMINHO_VIEWS_HEADER;
         require_once self::CAMINHO_VIEWS . '/pagina_inicial.php';

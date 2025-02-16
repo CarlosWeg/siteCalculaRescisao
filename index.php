@@ -4,7 +4,6 @@ if (session_status() !== PHP_SESSION_ACTIVE){
     session_start();
 }
 
-
 // Exibição de erros, tirar em produção
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);

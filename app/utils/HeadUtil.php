@@ -30,7 +30,7 @@ class HeadUtil{
         $this->oMetaTags->renderizar();
 
         foreach($this->aLinksCss as $css){
-            echo "\n<link rel='stylesheet' href={$css}>";
+            echo "\n<link href='{$css}' rel='stylesheet'>";
         }
 
         foreach($this->aLinksJs as $js){

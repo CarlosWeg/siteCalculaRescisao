@@ -1,12 +1,12 @@
-<main class="main-content-container container">
+<main class="">
 
-    <section class="container-introducao container">
-        <h1>Calculadora de Rescisão Trabalhista</h1>
-        <p>Simplificamos o complexo processo de cálculo da sua rescisão trabalhista. Nossa calculadora online gratuita oferece estimativas em poucos cliques</p>
-        <p>Descubra quanto deve ser recebido (ou pago). <span class = "simule-agora">Faça uma simulação!</span></p>
+    <section class="flex items-center flex-col pt-30 bg-blue-500 text-white">
+    <h1 class="text-3xl font-bold text-blue-500">Tailwind CSS Funcionando!</h1>
+        <p class="mb-6 text-lg">Simplificamos o complexo processo de cálculo da sua rescisão trabalhista. Nossa calculadora online gratuita oferece estimativas em poucos cliques</p>
+        <a href="#calculadora" class="bg-white text-blue-500 rounded-lg">Faça uma simulação!</a>
     </section>
 
-    <section class="container-formulario container">
+    <section class="container-formulario container" id="calculadora">
 
         <?php include_once 'app/views/templates/formulario_rescisao.php';?>
 
