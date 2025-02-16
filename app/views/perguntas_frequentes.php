@@ -15,6 +15,8 @@
                     <li>Aviso prévio trabalhado: o pagamento deve ser feito no primeiro dia útil seguinte ao término do contrato.</li>
                     <li>Aviso prévio indenizado ou dispensa imediata: o pagamento deve ocorrer em até 10 dias corridos a partir da rescisão.</li>
                 </ul>
+            </div>
+        </section>
 
         <section class="faq-item">
             <div class="pergunta"><h2>Como é feita a contagem desse prazo de 10 dias?</h2></div>
@@ -38,7 +40,6 @@
                 
                 <h3>Processo Trabalhista</h3>
                 <p>O trabalhador pode acionar a Justiça do Trabalho para garantir seus direitos. Caso uma ação judicial seja movida, o empregador poderá ter que arcar com despesas adicionais, como honorários advocatícios, taxas judiciais e outros custos legais. Dependendo do caso, pode haver ainda indenização por danos morais, caso seja comprovado que o atraso causou prejuízos significativos ao empregado.</p>
-
             </div>
         </section>
 

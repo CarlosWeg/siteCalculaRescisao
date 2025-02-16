@@ -30,7 +30,6 @@ async function validarFormularioSugestao(){
 
 }
 
-
 async function enviarDadosSugestoes(oDados){
     try{
         

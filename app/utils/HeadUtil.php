@@ -24,7 +24,7 @@ class HeadUtil{
     public function renderizar(){
 
         echo '<!DOCTYPE html>';
-        echo '<html lang = "pt-BR">';
+        echo '<html lang="pt-BR">';
         echo '<head>';
 
         $this->oMetaTags->renderizar();

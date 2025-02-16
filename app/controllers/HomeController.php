@@ -16,6 +16,7 @@ class HomeController{
         $oHeadUtilIndex = new HeadUtil($oMetaTagsIndex);
         $oHeadUtilIndex->adicionarLinksJs('js/formularioRescisao.js');
         $oHeadUtilIndex->adicionarLinksJs('js/mensagem.js');
+        $oHeadUtilIndex->adicionarLinksCss('./output.css');
         $oHeadUtilIndex->renderizar();
         require_once self::CAMINHO_VIEWS_HEADER;
         require_once self::CAMINHO_VIEWS . '/pagina_inicial.php';
@@ -40,6 +41,16 @@ class HomeController{
         require_once self::CAMINHO_VIEWS_HEADER;
         require_once self::CAMINHO_VIEWS . '/sugestoes.php';
         require_once self::CAMINHO_VIEWS_FOOTER;
+    }
+
+    public function comoCalcular(){
+        $oMetaTagsExplicacao = new MetaTagsUtil();
+        $oHeadUtilExplicacao = new HeadUtil($oMetaTagsExplicacao);
+        $oHeadUtilExplicacao->renderizar();
+        require_once self::CAMINHO_VIEWS_HEADER;
+        require_once self::CAMINHO_VIEWS . '/como_calcular_rescisao_trabalhista.php';
+        require_once self::CAMINHO_VIEWS_FOOTER;
+
     }
 
 }

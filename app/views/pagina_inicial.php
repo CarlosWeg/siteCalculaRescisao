@@ -26,4 +26,6 @@
 
     </section>
 
+    <?php include_once 'app/views/como_calcular_rescisao_trabalhista.php';?>
+
 </main>
