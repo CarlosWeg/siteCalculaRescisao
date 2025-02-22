@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/CarlosWeg/siteCalculoRescisao#readme",
   "dependencies": {
-    "@tailwindcss/cli": "^4.0.6",
-    "tailwindcss": "^4.0.6"
+    "@tailwindcss/cli": "^4.0.8",
+    "tailwindcss": "^4.0.8"
   }
 }

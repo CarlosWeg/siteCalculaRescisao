@@ -166,7 +166,7 @@ function exibirResultado(){
     let oDivResultadoResumo = document.getElementById("resultado_resumo");
 
     let sHtml = `
-                <h2>Resumo do resultado</h2>
+                <h2 class="">Resumo do resultado</h2>
                 <table id="tabela_resumo" class = "tabela_calculo">
                     <tr>
                         <th>Descrição</th>
