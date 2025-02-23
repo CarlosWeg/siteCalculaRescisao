@@ -1,13 +1,16 @@
-<section class="container-como-calcular container">
+<section class ="text-center">         
+    <h2 class="text-gray-800 text-3xl md:text-4xl font-bold mb-6">
+        Como é feito o cálculo da rescisão trabalhista?
+    </h2>
+    <p class="text-md text-gray-600 max-w-4xl mx-auto mb-10">
+        Nesta seção, você encontrará os principais tópicos com exemplos práticos para entender como calcular cada direito na rescisão do contrato de trabalho.
+    </p>
+</section>
 
-    <section class="container-introducao container">
-        <h1>Como é feito o cálculo da rescisão trabalhista?</h1>
-        <p>Nesta seção, você encontrará os principais tópicos com exemplos práticos para entender como calcular cada direito na rescisão do contrato de trabalho. Explore os cálculos do saldo de salário, férias vencidas e proporcionais, 13º salário, aviso prévio e multa rescisória do FGTS para saber o que deve ser pago.</p>
-    </section>
-
+<div class="space-y-12">
     <section class="item">
         <div class="titulo">
-            <h2>Saldo de Salário</h2>
+            <h3>Saldo de Salário</h2>
         </div>
         <div class="explicacao">
             <div class="explicacao-texto">
@@ -22,20 +25,22 @@
                         Multiplique o valor diário pelo número de dias efetivamente trabalhados.
                     </li>
                 </ul>
-                <p>
-                    <strong>Exemplo:</strong> Se o salário mensal é de R$ 3.000,00 e o empregado trabalhou 15 dias em um mês de 30 dias, o cálculo será: <br>
-                    (R$ 3.000,00 ÷ 30) × 15 = R$ 1.500,00.
-                </p>
+                <div class="explicacao-exemplo">
+                    <p>
+                        <strong>Exemplo:</strong> Se o salário mensal é de R$ 3.000,00 e o empregado trabalhou 15 dias em um mês de 30 dias, o cálculo será: <br>
+                        (R$ 3.000,00 ÷ 30) × 15 = R$ 1.500,00.
+                    </p>
+                </div>
             </div>
             <div class="explicacao-imagem">
-                <img src="img/saldo-salario.png" alt="Ilustração do cálculo do saldo de salário">
+                <img src="images/icon_salario.png" alt="Ilustração do cálculo do saldo de salário">
             </div>
         </div>
     </section>
 
     <section class="item">
         <div class="titulo">
-            <h2>Férias Vencidas e Proporcionais</h2>
+            <h3>Férias Vencidas e Proporcionais</h2>
         </div>
         <div class="explicacao">
             <div class="explicacao-texto">
@@ -50,19 +55,21 @@
                         Para férias proporcionais, calcule a fração do período trabalhado e acrescente o adicional de 1/3.
                     </li>
                 </ul>
-                <p>
-                    <strong>Exemplo:</strong> Se o empregado tem direito a 30 dias de férias e trabalhou 20 dias proporcionais, o valor base das férias proporcionais será (Salário Mensal ÷ 30) × 20, com o adicional de 1/3 sobre esse total.
-                </p>
+                <div class="explicacao-exemplo">
+                    <p>
+                        <strong>Exemplo:</strong> Se o empregado tem direito a 30 dias de férias e trabalhou 20 dias proporcionais, o valor base das férias proporcionais será (Salário Mensal ÷ 30) × 20, com o adicional de 1/3 sobre esse total.
+                    </p>
+                </div>
             </div>
             <div class="explicacao-imagem">
-                <img src="img/ferias.png" alt="Cálculo de férias proporcionais e vencidas">
+                <img src="images/icon_ferias_vencidas.png" alt="Cálc ulo de férias proporcionais e vencidas">
             </div>
         </div>
     </section>
 
     <section class="item">
         <div class="titulo">
-            <h2>13º Salário Proporcional</h2>
+            <h3>13 Salário Proporcional</h2>
         </div>
         <div class="explicacao">
             <div class="explicacao-texto">
@@ -77,19 +84,21 @@
                         Multiplique esse valor pelo número de meses (ou fração) trabalhados no ano.
                     </li>
                 </ul>
-                <p>
-                    <strong>Exemplo:</strong> Para um salário de R$ 3.000,00 e 8 meses trabalhados, o cálculo será: (R$ 3.000,00 ÷ 12) × 8 = R$ 2.000,00.
-                </p>
+                <div class="explicacao-exemplo">
+                    <p>
+                        <strong>Exemplo:</strong> Para um salário de R$ 3.000,00 e 8 meses trabalhados, o cálculo será: (R$ 3.000,00 ÷ 12) × 8 = R$ 2.000,00.
+                    </p>
+                </div>
             </div>
             <div class="explicacao-imagem">
-                <img src="img/13salario.png" alt="Cálculo do 13º salário proporcional">
+                <img src="images/icon_decimo_terceiro.png" alt="Cálculo do 13º salário proporcional">
             </div>
         </div>
     </section>
 
     <section class="item">
         <div class="titulo">
-            <h2>Aviso Prévio</h2>
+            <h3>Aviso Prévio</h2>
         </div>
         <div class="explicacao">
             <div class="explicacao-texto">
@@ -104,19 +113,21 @@
                         Calcule o valor do aviso prévio com base no salário integral e nos dias adicionais, se aplicável.
                     </li>
                 </ul>
-                <p>
-                    <strong>Exemplo:</strong> Um empregado com 5 anos de serviço teria direito a 30 dias (mínimo) + (5 × 3 dias) = 45 dias de aviso prévio. Se o salário for de R$ 3.000,00, o valor do aviso prévio indenizado seria proporcional a 45 dias de trabalho.
-                </p>
+                <div class="explicacao-exemplo">
+                    <p>
+                        <strong>Exemplo:</strong> Um empregado com 5 anos de serviço teria direito a 30 dias (mínimo) + (5 × 3 dias) = 45 dias de aviso prévio. Se o salário for de R$ 3.000,00, o valor do aviso prévio indenizado seria proporcional a 45 dias de trabalho.
+                    </p>
+                </div>
             </div>
+
             <div class="explicacao-imagem">
-                <img src="img/aviso-previo.png" alt="Cálculo do aviso prévio">
+                <img src="images/icon_aviso_previo.png" alt="Cálculo do aviso prévio">
             </div>
-        </div>
     </section>
 
     <section class="item">
         <div class="titulo">
-            <h2>Multa Rescisória do FGTS</h2>
+            <h3>Multa Rescisória do FGTS</h2>
         </div>
         <div class="explicacao">
             <div class="explicacao-texto">
@@ -131,14 +142,16 @@
                         Aplique 40% sobre esse total para obter o valor da multa.
                     </li>
                 </ul>
-                <p>
-                    <strong>Exemplo:</strong> Se o total depositado no FGTS durante o período trabalhado foi de R$ 5.000,00, a multa será de 0,40 × R$ 5.000,00 = R$ 2.000,00.
-                </p>
+                <div class="explicacao-exemplo">
+                    <p>
+                        <strong>Exemplo:</strong> Se o total depositado no FGTS durante o período trabalhado foi de R$ 5.000,00, a multa será de 0,40 × R$ 5.000,00 = R$ 2.000,00.
+                    </p>
+                </div>
             </div>
             <div class="explicacao-imagem">
-                <img src="img/fgts.png" alt="Cálculo da multa rescisória do FGTS">
+                <img src="images/icon_fgts.png" alt="Cálculo da multa rescisória do FGTS">
             </div>
         </div>
     </section>
 
-</section>
+</div>

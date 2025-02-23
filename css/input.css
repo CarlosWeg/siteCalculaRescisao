@@ -1,8 +1,49 @@
 @import "tailwindcss";
 
+@layer base {
+    @font-face {
+        font-family: 'DM Sans';
+        src: url('../fonts/DMSans/DMSans-VariableFont_opsz_wght.ttf') format('truetype-variations');
+        font-variation-settings: 'wght' 400;
+        font-weight: 100 700;
+        font-style: normal;
+        font-display: swap;
+    }
+
+    @font-face {
+        font-family: 'Karla';
+        src: url('../fonts/Karla/Karla-VariableFont_wght.ttf') format('truetype-variations');
+        font-variation-settings: 'wght' 400;
+        font-weight: 100 700;
+        font-style: normal;
+        font-display: swap;
+    }
+
+    /* Base document configuration */
+    html {
+        font-family: 'DM Sans', sans-serif;
+    }
+
+    /* Heading configuration */
+    h1, h2, h3, h4, h5, h6 {
+        font-family: 'Karla', sans-serif;
+    }
+    
+}
+
 @layer components {
-    .nav-link-hover {
-        @apply relative 
+
+    .main_content{
+        @apply flex
+              flex-col
+              min-h-screen
+              bg-gray-100
+              pt-16
+              md:pt-20;
+    }
+
+    .nav_link_hover{
+        @apply relative
                hover:text-blue-100
                transition-all
                duration-300
@@ -31,16 +72,30 @@
                relative;
     }
 
-    .label {
+    .link_calculadora{
+        @apply bg-white
+            text-blue-500
+                font-semibold
+                inline-block
+                text-lg
+                rounded-lg
+                px-6 py-3
+                transform
+                transition-all
+                duration-300
+                hover:-translate-y-1
+                cursor-pointer
+            }
+
+    .label{
         @apply text-base
                font-medium 
                text-gray-700
                text-center;
     }
 
-    .input {
-        @apply w-[100%]
-               rounded-md
+    .input{
+        @apply rounded-md
                border 
                border-gray-300
                px-2
@@ -54,36 +109,324 @@
                text-center;
     }
 
-    .botao_formulario_reset{
-        @apply w-[70%]
-               rounded-md
-               border 
-               bg-gray-200
+    .textarea {
+        @apply w-full
+               min-h-36
+               rounded-lg
+               border
                border-gray-300
-               px-2
-               h-10
-               shadow-sm 
-               hover:-translate-y-1
+               px-3
+               py-2
+               text-base
+               text-gray-700
+               shadow-sm
+               resize-none
+               focus:border-blue-500 
+               focus:outline-none 
+               focus:ring-2
+               focus:ring-blue-500/50
+               transition-colors
+    }
+
+    .botao_formulario_reset{
+        @apply py-2
+               px-4
+               rounded-md
+               text-gray-700
+               border-2
+               border-gray-300
                transition-all
                duration-300
-               text-center;
+               hover:-translate-y-1
+               hover:bg-gray-100
+               text-center
+               focus:outline-none
+               focus:ring-2
+               focus:ring-gray-200
+               cursor-pointer;
     }
 
     .botao_formulario_enviar{
-        @apply w-[70%]
+        @apply py-2
+               px-4
                rounded-md
-               border 
-               border-gray-300
-               px-2
-               h-10
-               shadow-sm 
-               bg-blue-500
                text-white
+               border-2
+               border-transparent
+               bg-blue-500
                transition-all
                duration-300
-               hover:bg-blue-600
                hover:-translate-y-1
-               text-center;
+               hover:bg-blue-600
+               focus:outline-none
+               focus:ring-2
+               focus:ring-blue-600
+               cursor-pointer;
+    }
+
+    .item{
+        @apply bg-white
+                 rounded-xl
+                 p-6
+                 shadow-sm
+                 border-2
+                 border-transparent
+                 transition-all
+                 duration-300
+                 hover:shadow-md    
+                 hover:-translate-y-1.5
+                 hover:border-blue-300/80;
+    }
+
+    .titulo{
+        @apply text-2xl
+               font-medium
+               text-blue-600
+               mb-8;
+    }
+
+    .container_explicacao{
+        @apply  text-gray-800
+                bg-gray-50
+                shadow-md
+                text-justify
+                rounded-lg
+    }
+
+    .explicacao{
+        @apply w-full
+               flex
+               flex-col
+               lg:flex-row
+    }
+
+    .explicacao-texto{
+        @apply w-full
+               lg:w-[70%]
+               p-4
+               text-gray-700;
+    }
+
+    .explicacao-exemplo{
+        @apply bg-blue-50
+               p-3
+               mt-6
+               rounded-lg
+               border
+               border-blue-100;
+    }
+
+    .explicacao-exemplo strong{
+        @apply block
+               mb-3
+               text-blue-800;
+    }
+
+    .explicacao-imagem {
+        @apply w-full
+               lg:w-[30%] 
+               flex
+               flex-col
+               items-center
+               justify-center
+               p-4
+               transition-transform
+               duration-300
     }
     
+    .explicacao-imagem img {
+        @apply w-48
+               md:w-60 
+               lg:w-full
+               max-w-[280px]
+               h-auto
+               mx-auto;
+    }
+
+    .resultado{
+        @apply w-full
+               max-w-2xl
+               flex
+               flex-col
+               mx-auto;
+    }
+
+    .tabela_resultado{
+        @apply w-full
+               bg-white
+               rounded-lg
+               shadow-sm
+               overflow-hidden
+               border
+               border-gray-200
+               mx-auto
+               mb-8;
+    }
+
+    caption{
+        @apply text-lg
+               font-semibold
+               text-gray-800
+               p-4
+               bg-gray-50
+               border-b
+               border-gray-300;
+    }
+
+    th{
+        @apply text-sm
+               font-medium
+               text-gray-700
+               p-4
+               bg-gray-50
+               border-b
+               border-gray-300
+               text-left
+               uppercase
+               tracking-wider;
+    }
+
+    td{
+        @apply text-base
+               font-medium
+               text-gray-600
+               p-3
+               bg-white
+               border-b
+               border-gray-200
+               align-middle
+               w-[50%];
+    }
+
+    th.valor{
+        @apply text-right;
+    }
+
+    td.valor {
+        @apply font-mono
+               font-medium
+               text-right;
+    }
+
+    tr:hover td{
+        @apply bg-blue-50/70
+               transition-colors
+               duration-200;
+    }
+
+    tr:last-child td{
+        @apply font-semibold
+               bg-gray-50;
+    }
+
+    .botao_detalhes_calculo{
+        @apply w-[70%]
+                rounded-md
+                border 
+                border-gray-300
+                px-2
+                h-10
+                shadow-sm 
+                bg-blue-500
+                text-white
+                transition-all
+                duration-300
+                hover:bg-blue-600
+                hover:-translate-y-1
+                text-center
+                mx-auto
+                mb-6
+                focus:outline-none
+                focus:ring-2
+                focus:ring-blue-600
+                cursor-pointer;
+    }
+
+    .aviso{
+        @apply  bg-amber-50
+                text-amber-900
+                border
+                border-amber-200
+                text-sm
+                font-medium
+                text-center p-4
+                rounded-lg
+                shadow-sm
+                max-w-3xl
+                mx-auto
+    }
+
+    .faq-item{
+        @apply w-full
+               bg-white
+               shadow-sm
+               rounded-xl
+               p-6
+               border-2
+               border-transparent
+               transition-all
+               duration-300
+               hover:-translate-y-1.5
+               hover:shadow-md
+               hover:border-blue-300/80;
+    }
+
+    .pergunta{
+        @apply w-full
+               text-lg
+               md:text-xl
+               text-blue-600
+    }
+
+    .resposta{
+        @apply mt-4
+               space-y-4
+    }
+
+    .resposta h3{
+        @apply text-lg
+               font-medium
+               text-gray-700
+               mb-2
+    }
+
+    .resposta p{
+        @apply text-base
+               leading-relaxed
+    }
+
+    .resposta ul, .resposta ol{
+        @apply pl-6
+               space-y-1.5
+    }
+
+    .resposta li{
+        @apply text-base
+               relative
+               pl-3
+               before:content-['•']
+               before:absolute
+               before:-left-1
+               before:text-blue-500;
+    }
+
+
+    .mensagem_sistema {
+        @apply fixed
+               top-28
+               right-3
+               max-w-80
+               md:max-w-96
+               bg-blue-100
+               backdrop-blur-sm
+               py-3
+               px-4
+               text-blue-800
+               font-medium
+               rounded-md
+               shadow-lg
+               transition-all
+               duration-300
+               text-right;
+    }
 }

@@ -1,10 +1,15 @@
-<main class="main-content-container container">
+<main class="main_content">
 
-    <section class="container-perguntas-frequentes container">
+    <section class="section_container container_explicacao space-y-12">
 
-        <section class="container-introducao container">
-            <h1>Perguntas frequentes</h1>
-            <p>Este FAQ tem como objetivo esclarecer as dúvidas mais comuns sobre o tema, fornecendo informações essenciais sobre como funciona o pagamento das verbas rescisórias, o cálculo das férias proporcionais, as possibilidades de negociação do aviso prévio, e muito mais.</p>
+
+        <section class="text-center">
+            <h1 class="text-gray-800 text-3xl md:text-4xl font-bold mb-6">
+                Perguntas Frequentes
+            </h1>
+            <p class="text-md text-gray-600 max-w-4xl mx-auto mb-10">
+                Este FAQ tem como objetivo esclarecer as dúvidas mais comuns sobre o tema, fornecendo informações essenciais sobre como funciona o pagamento das verbas rescisórias, o cálculo das férias proporcionais, as possibilidades de negociação do aviso prévio, e muito mais.
+            </p>
         </section>
 
         <section class="faq-item">
@@ -79,10 +84,12 @@
             <div class="pergunta"><h2>Como calcular férias proporcionais para menos de um ano de trabalho?</h2></div>
             <div class="resposta">
                 <div class="calculo">
-                    <p>Exemplo com salário de R$ 1.800 e 10 meses trabalhados:</h3>
-                    <p>1. Férias proporcionais = (R$ 1.800 ÷ 12) × 10 meses = R$ 1.500</p>
-                    <p>2. Adicional de férias (1/3) = R$ 1.500 ÷ 3 = R$ 500</p>
-                    <p>3. Total = R$ 1.500 + R$ 500 = R$ 2.000</p>
+                    <h3>Exemplo com salário de R$ 1.800 e 10 meses trabalhados:</h3>
+                    <ol>
+                        <li>1. Férias proporcionais = (R$ 1.800 ÷ 12) × 10 meses = R$ 1.500</li>
+                        <li>2. Adicional de férias (1/3) = R$ 1.500 ÷ 3 = R$ 500</li>
+                        <li>3. Total = R$ 1.500 + R$ 500 = R$ 2.000</li>
+                    </ol>
                 </div>
             </div>
         </section>

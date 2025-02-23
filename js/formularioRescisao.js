@@ -94,7 +94,8 @@ async function validarFormularioRescisao(){
 
         if (oSucesso){
             exibirResultado();
-            definirAviso("Simulação realizada com sucesso! Confira o resultado.",null,"sucesso");
+            definirAviso("Simulação realizada com sucesso!<br>Confira o resultado.",null,"sucesso");
+            scrollSection('resultado_resumo');
             oForm.reset();
         }
 
@@ -163,34 +164,37 @@ function toggleDetalhesCalculo(){
 function exibirResultado(){
     definirAviso("Cáculo realizado com sucesso!",null,"sucesso");
 
+    let oContainer = document.getElementById("container_resultado")
     let oDivResultadoResumo = document.getElementById("resultado_resumo");
 
     let sHtml = `
-                <h2 class="">Resumo do resultado</h2>
-                <table id="tabela_resumo" class = "tabela_calculo">
+
+                <table id="tabela_resumo" class="tabela_resultado">
+                <caption class="titulo_tabela">Resumo do resultado</caption>
+
                     <tr>
                         <th>Descrição</th>
-                        <th>Valor</th>
+                        <th class="valor">Valor</th>
                     </tr>    
 
                     <tr>
                         <td>Proventos</td>
-                        <td>${formatarMoeda(oResultadoCalculo.resultado.total_proventos)}</td>
+                        <td class="valor">${formatarMoeda(oResultadoCalculo.resultado.total_proventos)}</td>
                     </tr>
 
                     <tr>
                         <td>Descontos</td>
-                        <td>${formatarMoeda(oResultadoCalculo.resultado.total_descontos)}</td>
+                        <td class="valor">${formatarMoeda(oResultadoCalculo.resultado.total_descontos)}</td>
                     </tr>
 
                     <tr>
                         <td>Total a receber (líquido)</td>
-                        <td>${formatarMoeda(oResultadoCalculo.resultado.valor_liquido)}</td>
+                        <td class="valor">${formatarMoeda(oResultadoCalculo.resultado.valor_liquido)}</td>
                     </tr>
 
                 </table>
 
-                <button type="button" id="botao_detalhes_calculo" onclick="toggleDetalhesCalculo()">Exibir Detalhes do Cálculo</button>
+                <button type="button" id="botao_detalhes_calculo" class="botao_detalhes_calculo" onclick="toggleDetalhesCalculo()">Exibir Detalhes do Cálculo</button>
 
                 `;
 
@@ -211,92 +215,87 @@ function exibirDetalhesCalculo(){
     let oDivResultadoDetalhe = document.getElementById("resultado_detalhe");
 
     let sHtml = `
-            <h2>Detalhes do cálculo</h2>
-
-            <h3>Proventos</h3>
-
-            <table id="tabela_proventos" class="tabela_calculo">
+            <table id="tabela_proventos" class="tabela_resultado">
+            <caption class="titulo_tabela">Proventos</caption>
                 <tr>
                     <th>Descrição</th>
-                    <th>Valor</th>
+                    <th class="valor">Valor</th>
                 </tr>    
 
                 <tr>
                     <td>Saldo Salário</td>
-                    <td>${formatarMoeda(oProventos.saldo_salario)}</td>
+                    <td class="valor">${formatarMoeda(oProventos.saldo_salario)}</td>
                 </tr>
 
                 <tr>
                     <td>Aviso prévio</td>
-                    <td>${formatarMoeda(oProventos.aviso_previo)}</td>
+                    <td class="valor">${formatarMoeda(oProventos.aviso_previo)}</td>
                 </tr>
 
 
                 <tr>
                     <td>Décimo terceiro</td>
-                    <td>${formatarMoeda(oProventos.decimo_terceiro)}</td>
+                    <td class="valor">${formatarMoeda(oProventos.decimo_terceiro)}</td>
                 </tr>
 
                 <tr>
                     <td>Férias proporcionais</td>
-                    <td>${formatarMoeda(oProventos.ferias_proporcionais)}</td>
+                    <td class="valor">${formatarMoeda(oProventos.ferias_proporcionais)}</td>
                 </tr>
 
                 <tr>
                     <td>Férias vencidas</td>
-                    <td>${formatarMoeda(oProventos.ferias_vencidas)}</td>
+                    <td class="valor">${formatarMoeda(oProventos.ferias_vencidas)}</td>
                 </tr>
 
                 <tr>
                     <td>Total proventos</td>
-                    <td>${formatarMoeda(oResultadoCalculo.resultado.total_proventos)}</td>
+                    <td class="valor">${formatarMoeda(oResultadoCalculo.resultado.total_proventos)}</td>
                 </tr>
 
 
             </table>
 
-            <h3>Descontos</h3>
-
-            <table id="tabela_descontos" class="tabela_calculo">
+            <table id="tabela_descontos" class="tabela_resultado">
+            <caption class="titulo_tabela">Descontos</caption>
                 <tr>
                     <th>Descrição</th>
-                    <th>Valor</th>
+                    <th class="valor">Valor</th>
                 </tr>    
 
                 <tr>
                     <td>IRRF (Imposto de Renda Retido na Fonte)</td>
-                    <td>${formatarMoeda(oDescontos.irrf)}</td>
+                    <td class="valor">${formatarMoeda(oDescontos.irrf)}</td>
                 </tr>
 
                 <tr>
                     <td>INSS (Instituto Nacional do Seguro Social)</td>
-                    <td>${formatarMoeda(oDescontos.inss)}</td>
+                    <td class="valor">${formatarMoeda(oDescontos.inss)}</td>
                 </tr>
 
                 <tr>
                     <td>Total descontos</td>
-                    <td>${formatarMoeda(oResultadoCalculo.resultado.total_descontos)}</td>
+                    <td class="valor">${formatarMoeda(oResultadoCalculo.resultado.total_descontos)}</td>
                 </tr>
 
 
             </table>
 
-            <h3>FGTS</h3>
-
-            <table id="tabela_fgts" class="tabela_calculo">
+            <table id="tabela_fgts" class="tabela_resultado">
+            <caption class="titulo_tabela">FGTS</caption>
                 <tr>
                     <th>Descrição</th>
-                    <th>Valor</th>
+                    <th class="valor">Valor</th>
                 </tr>    
 
                 <tr>
                     <td>Saldo Total</td>
-                    <td>${formatarMoeda(oFgts.saldo_total)}</td>
+                    <td class="valor">${formatarMoeda(oFgts.saldo_total)}</td>
                 </tr>
 
                 <tr>
                     <td>Multa</td>
-                    <td>${formatarMoeda(oFgts.multa)}</td>
+                    <td class="valor">${formatarMoeda(oFgts.multa)}</td>
                 </tr>
 
             </table>

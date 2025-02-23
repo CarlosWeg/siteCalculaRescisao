@@ -69,8 +69,8 @@
     <div class="grid grid-cols-1">
 
         <div class="flex flex-col justify-start space-y-6 items-center">
-            <button type="button" onclick="validarFormularioRescisao()" class="botao_formulario_enviar" >Calcular</button>
-            <button type="reset" class="botao_formulario_reset">Limpar</button>
+            <button type="button" onclick="validarFormularioRescisao()" class="botao_formulario_enviar w-[40%]">Calcular</button>
+            <button type="reset" class="botao_formulario_reset w-[40%]">Limpar</button>
         </div>
 
     </div>

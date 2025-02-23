@@ -26,6 +26,7 @@ class HomeController{
     public function perguntasFrequentes(){
         $oMetaTagsPerguntas = new MetaTagsUtil();
         $oHeadUtilPerguntas = new HeadUtil($oMetaTagsPerguntas);
+        $oHeadUtilPerguntas->adicionarLinksCss('css/output.css');
         $oHeadUtilPerguntas->renderizar();
         require_once self::CAMINHO_VIEWS_HEADER;
         require_once self::CAMINHO_VIEWS . '/perguntas_frequentes.php';
@@ -37,20 +38,11 @@ class HomeController{
         $oHeadUtilSugestoes = new HeadUtil($oMetaTagsSugestoes);
         $oHeadUtilSugestoes->adicionarLinksJs('js/formularioSugestao.js');
         $oHeadUtilSugestoes->adicionarLinksJs('js/mensagem.js');
+        $oHeadUtilSugestoes->adicionarLinksCss('css/output.css');        
         $oHeadUtilSugestoes->renderizar();
         require_once self::CAMINHO_VIEWS_HEADER;
         require_once self::CAMINHO_VIEWS . '/sugestoes.php';
         require_once self::CAMINHO_VIEWS_FOOTER;
-    }
-
-    public function comoCalcular(){
-        $oMetaTagsExplicacao = new MetaTagsUtil();
-        $oHeadUtilExplicacao = new HeadUtil($oMetaTagsExplicacao);
-        $oHeadUtilExplicacao->renderizar();
-        require_once self::CAMINHO_VIEWS_HEADER;
-        require_once self::CAMINHO_VIEWS . '/como_calcular_rescisao_trabalhista.php';
-        require_once self::CAMINHO_VIEWS_FOOTER;
-
     }
 
 }

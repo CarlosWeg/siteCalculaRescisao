@@ -1,14 +1,14 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-    content: ["./**/*.php"], // Para detectar classes dentro dos arquivos PHP
-    theme: {
-      extend: {
-        fontFamily:{
-            Dmsans:["DM Sans","sans-serif"],
-            Karla:["Karla","sans-serif"],
-        },
+  content: ["./**/*.php"],
+  theme: {
+    extend: {
+      fontFamily: {
+        'sans': ['DM Sans', 'system-ui', 'sans-serif'],
+        'dm-sans': ['DM Sans', 'sans-serif'],  // Use 'dm-sans' para consistência
+        'karla': ['Karla', 'sans-serif'],
       },
     },
-    plugins: [],
-  };
-  
+  },
+  plugins: [],
+};

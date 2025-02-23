@@ -56,3 +56,14 @@ function temporizadorMensagem(){
         removerMensagem();
     },"5000");
 }
+
+function scrollSection(elementoId){
+    const oElemento = document.getElementById(elementoId);
+
+    if (oElemento){
+        oElemento.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+        });
+    }
+}
