@@ -46,7 +46,7 @@
     </div>
 
     <div class="footer-paginas-disclaimer flex flex-row justify-center w-[90%] max-w-7xl mx-auto border-t-2 border-gray-300 p-6">
-        <p class="mx-auto text-center text-sm">Desenvolvido por <a href = "https://www.linkedin.com/in/carlos-weege/" target="_blank">Carlos H. A. Weege</a>, 2025. Todos os direitos reservados.</p>
+        <p class="mx-auto text-center text-sm">Desenvolvido por <a href = "https://www.linkedin.com/in/carlos-weege/" target="_blank">Carlos H. A. Weege</a>,<span id="ano_dev"></span>. Todos os direitos reservados.</p>
     </div>
 
 

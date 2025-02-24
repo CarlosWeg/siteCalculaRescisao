@@ -27,6 +27,7 @@ class HomeController{
         $oMetaTagsPerguntas = new MetaTagsUtil();
         $oHeadUtilPerguntas = new HeadUtil($oMetaTagsPerguntas);
         $oHeadUtilPerguntas->adicionarLinksCss('css/output.css');
+        $oHeadUtilPerguntas->adicionarLinksJs('js/mensagem.js');
         $oHeadUtilPerguntas->renderizar();
         require_once self::CAMINHO_VIEWS_HEADER;
         require_once self::CAMINHO_VIEWS . '/perguntas_frequentes.php';

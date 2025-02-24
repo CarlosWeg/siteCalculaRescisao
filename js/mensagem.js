@@ -1,6 +1,7 @@
-window.onload = function(){
+document.addEventListener('DOMContentLoaded', function() {
     temporizadorMensagem();
-}
+    atualizarAnoDev();
+});
 
 function obterIcone(sTipo){
 
@@ -65,5 +66,15 @@ function scrollSection(elementoId){
             behavior: 'smooth',
             block: 'start'
         });
+    }
+}
+
+function atualizarAnoDev() {
+    const oAno = document.getElementById("ano_dev");
+
+    if (oAno) {
+        oAno.innerHTML = new Date().getFullYear();
+    } else {
+        console.error("Elemento com ID 'ano_dev' não encontrado.");
     }
 }
