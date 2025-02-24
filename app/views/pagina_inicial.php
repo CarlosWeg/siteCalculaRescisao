@@ -4,7 +4,7 @@
 
         <div class="max-w-4xl mx-auto px-4 text-center">
 
-            <h1 class="text-3xl lg:text-5xl font-bold text-white mb-8">Calcula Rescisão</h1>
+            <h1 class="text-4xl lg:text-5xl font-bold text-white mb-8">Calcula Rescisão</h1>
             <p class="mb-8 text-lg">Simplificamos o complexo processo de cálculo da sua rescisão trabalhista.</p>
             
             <button type="button" id="botao_link_calculadora" class="link_calculadora" onclick='scrollSection("calculadora")'>Faça uma simulação!</button>

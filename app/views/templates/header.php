@@ -1,6 +1,6 @@
 <body>
 
-    <header class="w-full bg-blue-500 px-4 py-1.5 flex relative lg:fixed top-0 z-[1000] shadow-md">
+    <header class="w-full bg-blue-500 px-4 py-1.5 flex relative lg:fixed top-0 z-[1000] shadow-md pb-3 md:pb-0">
 
         <nav class="text-white w-full max-w-7x1 mx-auto flex flex-col md:flex-row justify-around items-center">
 
