@@ -17,14 +17,14 @@ class CalculoRescisaoController extends BaseController{
         $aDados = parent::validarEntradaBasica();
 
         $aDadosSanitizados = [
-            'salario_bruto' => SanitizarEntradaUtil::sanitizarEntrada($aDados['salario_bruto'], 'float'),
+            'salario_bruto' => SanitizarEntradaUtil::sanitizarEntrada($aDados['salario_bruto'], 'float') ?? 0,
             'data_contratacao' => SanitizarEntradaUtil::sanitizarEntrada($aDados['data_contratacao'], 'data'),
             'data_demissao' => SanitizarEntradaUtil::sanitizarEntrada($aDados['data_demissao'], 'data'),
             'motivo_rescisao' => SanitizarEntradaUtil::sanitizarEntrada($aDados['motivo_rescisao'], 'string'),
             'tipo_aviso_previo' => SanitizarEntradaUtil::sanitizarEntrada($aDados['tipo_aviso_previo'], 'string'),
-            'saldo_fgts_antes' => SanitizarEntradaUtil::sanitizarEntrada($aDados['saldo_fgts_antes'], 'float'),
-            'numero_dependentes' => SanitizarEntradaUtil::sanitizarEntrada($aDados['numero_dependentes'], 'inteiro'),
-            'ferias_vencidas' => isset($aDados['ferias_vencidas']) ? (bool)$aDados['ferias_vencidas'] : false
+            'saldo_fgts_antes' => SanitizarEntradaUtil::sanitizarEntrada($aDados['saldo_fgts_antes'], 'float') ?? 0,
+            'numero_dependentes' => SanitizarEntradaUtil::sanitizarEntrada($aDados['numero_dependentes'], 'inteiro') ?? 0,
+            'ferias_vencidas' => $aDados['ferias_vencidas'] ?? false
         ];
 
         $aCamposObrigatorios = ['salario_bruto','data_contratacao','data_demissao','motivo_rescisao','tipo_aviso_previo'];

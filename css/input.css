@@ -35,11 +35,11 @@
 
     .main_content{
         @apply flex
-              flex-col
-              min-h-screen
-              bg-gray-100
-              pt-0
-              lg:pt-20
+               flex-col
+               min-h-screen
+               bg-gray-100
+               pt-0
+               lg:pt-20
     }
 
     .nav_link_hover{
@@ -100,6 +100,7 @@
                border-gray-300
                px-2
                h-10
+               w-full
                shadow-sm 
                focus:border-blue-500 
                focus:outline-none 
@@ -415,19 +416,33 @@
         @apply fixed
                top-28
                right-3
-               max-w-80
-               md:max-w-96
-               bg-blue-100
-               backdrop-blur-sm
+               z-50
+               text-left
+               flex
+               items-center
+               gap-2
+               w-fit
+               max-w-72
+               md:max-w-[420px]
+               bg-white
+               border-2
+               border-blue-500
+               backdrop-blur
                py-3
-               px-4
+               px-5
                text-blue-800
                font-medium
-               rounded-md
-               shadow-lg
+               rounded-lg
+               shadow-md
+
+    }
+
+    .animacao-fade-out{
+        @apply opacity-0
+               translate-x-4
                transition-all
                duration-300
-               text-right;
+               ease-out
     }
 
     .container_links{

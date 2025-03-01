@@ -38,17 +38,21 @@
             <div class="footer-disclaimer w-50%">
 
                 <p class="text-center md:text-right">
-                <span class="font-semibold">O Calcula Rescisão</span> é uma ferramenta online desenvolvida para auxiliar trabalhadores e empregadores a estimarem  os valores devidos em uma rescisão de contrato de trabalho. Recomendamos que os usuários consultem um profissional da área trabalhista para obter orientações.
-
-            </p>    
+                    <span class="font-semibold">O Calcula Rescisão</span> é uma ferramenta online desenvolvida para auxiliar trabalhadores e empregadores a estimarem  os valores devidos em uma rescisão de contrato de trabalho. Recomendamos que os usuários consultem um profissional da área trabalhista para obter orientações.
+                </p>    
 
             </div>
     </div>
 
-    <div class="footer-paginas-disclaimer flex flex-row justify-center w-[90%] max-w-7xl mx-auto border-t-2 border-gray-300 p-6">
-        <p class="mx-auto text-center text-sm">Desenvolvido por <a href = "https://www.linkedin.com/in/carlos-weege/" target="_blank">Carlos H. A. Weege</a>,<span id="ano_dev"></span>. Todos os direitos reservados.</p>
+    <div class="footer-paginas-disclaimer flex flex-col justify-center w-[90%] max-w-7xl mx-auto border-t-2 border-gray-300 p-6">
+        <p class="mx-auto text-center text-sm mb-1">
+            © <span id="ano_dev"></span> Calcula Rescisão - 
+            Este site é apenas para estimativas e não substitui orientação profissional. 
+        </p>
+        <p class="mx-auto text-center text-sm">
+            Desenvolvido por <a href="https://www.linkedin.com/in/carlos-weege/" target="_blank" class="nav_link_hover">Carlos Weege</a>.
+        </p>
     </div>
-
 
 </footer>
 </body>

@@ -1,7 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {
-    temporizadorMensagem();
-    atualizarAnoDev();
+    iniciarTemporizador();
 });
+
+let mensagemTimeout = null;
 
 function obterIcone(sTipo){
 
@@ -24,6 +25,11 @@ function obterIcone(sTipo){
 
 function definirAviso(sTexto,oFocus,sTipo){
 
+    if (mensagemTimeout){
+        clearTimeout(mensagemTimeout);
+        mensagemTimeout = null;
+    }
+
     removerMensagem();
 
     let sIcone = obterIcone(sTipo);
@@ -36,7 +42,8 @@ function definirAviso(sTexto,oFocus,sTipo){
     `;
 
     document.body.insertAdjacentHTML('beforeend', sMensagem);
-    temporizadorMensagem();
+
+    iniciarTemporizador();
 
     if (oFocus){
         oFocus.focus();
@@ -44,37 +51,28 @@ function definirAviso(sTexto,oFocus,sTipo){
 
 }
 
-function removerMensagem(){
-    let oMensagem = document.getElementById("mensagem_sistema");
+function iniciarTemporizador(iTempo = 5000){
+    mensagemTimeout = setTimeout(()=>{
+        const oMensagem = document.getElementById("mensagem_sistema");
 
-    if (oMensagem != null){
+        if (oMensagem){
+            oMensagem.classList.add('animacao-fade-out');
+            setTimeout(()=>removerMensagem(),300);
+        }
+    },iTempo);
+}
+
+function removerMensagem(){
+    const oMensagem = document.getElementById("mensagem_sistema");
+
+    if (oMensagem){
         oMensagem.remove();
     }
-}
 
-function temporizadorMensagem(){
-    setTimeout(() => {
-        removerMensagem();
-    },"5000");
-}
-
-function scrollSection(elementoId){
-    const oElemento = document.getElementById(elementoId);
-
-    if (oElemento){
-        oElemento.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-        });
+    if (mensagemTimeout){
+        clearTimeout(mensagemTimeout);
+        mensagemTimeout = null;
     }
+
 }
 
-function atualizarAnoDev() {
-    const oAno = document.getElementById("ano_dev");
-
-    if (oAno) {
-        oAno.innerHTML = new Date().getFullYear();
-    } else {
-        console.error("Elemento com ID 'ano_dev' não encontrado.");
-    }
-}

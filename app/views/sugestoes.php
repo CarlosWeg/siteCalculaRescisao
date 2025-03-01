@@ -32,7 +32,6 @@
         <li><a href="https://www.jusbrasil.com.br/noticias/direitos-e-deveres-do-trabalhador-e-do-empregador-na-demissao-sem-justa-causa-e-com-justa-causa/401233270"><span class="links_uteis_titulo">JUSBRASIL - </span> Direitos e deveres do trabalhador e do empregadorna demissão sem justa causa e com justa causa            </a></li>            
         <li><a href="https://www.caixa.gov.br/beneficios-trabalhador/fgts/Paginas/default.aspx"><span class="links_uteis_titulo">CAIXA - FGTS -</span> Benefícios do Trabalhador</a></li>
         <li><a href="https://www.caixa.gov.br/empresa/fgts-empresas/guia-recolhimento-recisorio-fgts/Paginas/default.aspx"><span class="links_uteis_titulo">CAIXA -</span> Guia de Recolhimento Rescisório do FGTS</a></li>
-
     </ul>
 
 </section>

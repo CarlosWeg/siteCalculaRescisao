@@ -7,5 +7,3 @@ $oRouter->addRota('GET','/sugestoes',[\App\Controllers\HomeController::class,'su
 $oRouter->addRota('POST','/enviar-sugestao',[\App\Controllers\SugestaoController::class,'enviar']);
 
 $oRouter->addRota('GET','/perguntas-frequentes',[\App\Controllers\HomeController::class,'perguntasFrequentes']);
-
-//$oRouter->addRota('GET','/como-calcular-rescisao-trabalhista',[\App\Controllers\HomeController::class,'comoCalcular']);

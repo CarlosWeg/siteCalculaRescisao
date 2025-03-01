@@ -17,6 +17,15 @@
         <?php include_once 'app/views/templates/formulario_rescisao.php';?>
 
     </section>
+
+    <section id="container_aviso" class="section_container">
+
+        <div class="aviso">
+            <p class="mb-2"><strong>⚠️ Atenção: </strong>As informações e valores apresentados nesta ferramenta podem conter imprecisões.</p>
+            <p>Esta ferramenta NÃO substitui o acompanhamento de um profissional qualificado da área trabalhista.</p>
+        </div>
+
+    </section>
     
     <section id="container_resultado" class="section_container">
 
@@ -32,12 +41,4 @@
     </section>
 
     
-    <section id="container_aviso" class="section_container">
-
-        <div class="aviso">
-            <p class="mb-2"><strong>⚠️ Atenção: </strong>As informações e valores apresentados podem conter imprecisões.</p>
-            <p>Esta ferramenta não substitui o acompanhamento de um profissional qualificado da área trabalhista.</p>
-        </div>
-
-    </section>
 </main>

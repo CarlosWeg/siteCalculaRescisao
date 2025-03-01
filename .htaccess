@@ -1,5 +1,16 @@
 RewriteEngine On
 
+# Previne listagem de diretórios
+Options -Indexes
+
+# Previne acesso direto a diretórios importantes
+RewriteRule ^(app|vendor|config|core)/ - [F]
+
+# Bloqueia acesso a arquivos ocultos (arquivos que começam com ponto)
+<FilesMatch "^\.">
+    Require all denied
+</FilesMatch>
+
 # Verifica se o arquivo NÃO existe
 RewriteCond %{REQUEST_FILENAME} !-f
 

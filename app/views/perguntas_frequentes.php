@@ -57,7 +57,7 @@
                     <li>Dispensa do cumprimento com pagamento</li>
                     <li>Redução da jornada durante o aviso</li>
                 </ul>
-                <p><strong>Importante:</strong>Qualquer acordo deve ser formalizado por escrito.</p>
+                <p><strong>Importante: </strong>Qualquer acordo deve ser formalizado por escrito.</p>
             </div>
         </section>
 

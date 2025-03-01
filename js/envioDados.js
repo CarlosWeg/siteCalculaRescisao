@@ -30,7 +30,7 @@ async function enviarDadosRescisao(oDados){
     }
 }
 
-function formatarMoeda(fValor){
+function formatarMoedaExibExib(fValor){
     return fValor.toLocaleString('pt-BR',{
         style: 'currency',
         currency: 'BRL'

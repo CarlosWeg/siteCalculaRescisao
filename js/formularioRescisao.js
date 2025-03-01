@@ -1,3 +1,14 @@
+document.addEventListener("DOMContentLoaded", function() {
+    document.getElementById("salario_bruto").addEventListener('blur', function(){
+        mascaraMoeda(this);
+    });
+
+    document.getElementById("saldo_fgts_antes").addEventListener('blur', function(){
+        mascaraMoeda(this);
+    });
+});
+
+
 let oResultadoCalculo = null;
 let bResultadosVisiveis = false;
 
@@ -17,53 +28,53 @@ async function validarFormularioRescisao(){
     let sTexto = "";
 
     if (oSalarioBruto.value == ""){
-        sTexto = "O campo salário bruto é obrigatório";
+        sTexto = "O campo salário bruto é obrigatório.";
         definirAviso(sTexto,oSalarioBruto,"aviso");
         return false;
     }
 
-    if (isNaN(oSalarioBruto.value) || oSalarioBruto.value <= 0){
-        sTexto = "O campo salário bruto não pode ser negativo";
+    if (!validarValorReais(oSalarioBruto.value,false)){
+        sTexto = "O campo salário bruto deve ser maior que zero.";
         definirAviso(sTexto,oSalarioBruto,"aviso");
         return false;
     }
 
     if (oDataContratacao.value == ""){
-        sTexto = "O campo data de contratação é obrigatório";
+        sTexto = "O campo data de contratação é obrigatório.";
         definirAviso(sTexto,oDataContratacao,"aviso");
         return false;
     }
 
     if (oDataDemissao.value == ""){
-        sTexto = "O campo data de demissão é obrigatório";
+        sTexto = "O campo data de demissão é obrigatório.";
         definirAviso(sTexto,oDataDemissao,"aviso");
         return false;
     }
 
     if (!validarDatas(oDataContratacao.value,oDataDemissao.value)){
-        sTexto = "A data de demissão deve ser posterior à data de contratação";
+        sTexto = "A data de demissão deve ser posterior à data de contratação.";
         definirAviso(sTexto,oDataDemissao,"aviso");
         return false;
     }
 
     if (oMotivoRescisao.value == ""){
-        sTexto = "O campo motivo de rescisão é obrigatório";
+        sTexto = "O campo motivo de rescisão é obrigatório.";
         definirAviso(sTexto,oMotivoRescisao,"aviso");
         return false;
     }
 
     if (oTipoAvisoPrevio.value == ""){
-        sTexto = "O campo tipo de aviso prévio é obrigatório";
+        sTexto = "O campo tipo de aviso prévio é obrigatório.";
         definirAviso(sTexto,oTipoAvisoPrevio,"aviso");
         return false;
     }
 
-    if (oSaldoFgtsAntes.value === "" || isNaN((oSaldoFgtsAntes.value))) {
+    if (oSaldoFgtsAntes.value === "") {
         oSaldoFgtsAntes.value = 0;
     }
     
-    if ((oSaldoFgtsAntes.value) < 0) {
-        sTexto = "O saldo do FGTS não pode ser negativo";
+    if (!validarValorReais(oSaldoFgtsAntes.value,true)){
+        sTexto = "O saldo do fgts não pode ser negativo.";
         definirAviso(sTexto, oSaldoFgtsAntes,"aviso");
         return false;
     }
@@ -73,7 +84,7 @@ async function validarFormularioRescisao(){
     }
 
     if (oNumeroDependentes.value < 0){
-        sTexto = "O campo número de dependentes não pode ser negativo";
+        sTexto = "O campo número de dependentes não pode ser negativo.";
         definirAviso(sTexto,oNumeroDependentes,"aviso");
         return false;    
     }
@@ -109,6 +120,50 @@ function validarDatas(sDataContratacao,sDataDemissao){
     return dDataDemissao > dDataContratacao;
 }
 
+function validarValorReais(sValor,bPermiteZero){
+    const sValorNumerico = removerVirgulaString(sValor);
+
+    if ((isNaN(sValorNumerico))){
+        return false;
+    }
+
+    const fValorFloat = parseFloat(sValorNumerico);
+
+    if (bPermiteZero){
+        return fValorFloat >= 0;
+    } else {
+        return fValorFloat > 0;
+    }
+
+}
+
+function removerVirgulaString(sValor){
+    let sValorSemSimbolo = sValor.replace(/[^\d,]/g, '');
+
+    sValorSemSimbolo = sValorSemSimbolo.replace(',', '.');
+
+    return sValorSemSimbolo;
+}
+
+function formatarMoeda(fValor){
+    return fValor.toLocaleString('pt-BR',{
+        style: 'currency',
+        currency: 'BRL'
+    });
+}
+
+function mascaraMoeda(oCampo){
+    let sValor = removerVirgulaString(oCampo.value);
+
+    if (isNaN(sValor) || sValor == ""){
+        sValor = "0";
+    }
+    const fValorNumerico = parseFloat(sValor);
+
+    oCampo.value = formatarMoeda(fValorNumerico);
+
+}
+
 async function enviarDadosRescisao(oDados){
     try{
         
@@ -138,18 +193,13 @@ async function enviarDadosRescisao(oDados){
     }
 }
 
-function formatarMoeda(fValor){
-    return fValor.toLocaleString('pt-BR',{
-        style: 'currency',
-        currency: 'BRL'
-    });
-}
+
 
 function toggleDetalhesCalculo(){
     let oDivResultadoDetalhe = document.getElementById("resultado_detalhe");
     let oBotaoDetalhesCalculo = document.getElementById("botao_detalhes_calculo");
 
-    if (bResultadosVisiveis === true){
+    if (bResultadosVisiveis){
         oDivResultadoDetalhe.innerHTML = '';
         oBotaoDetalhesCalculo.innerText = 'Exibir detalhes do cálculo';
         bResultadosVisiveis = false;
@@ -162,8 +212,6 @@ function toggleDetalhesCalculo(){
 }
 
 function exibirResultado(){
-    definirAviso("Cáculo realizado com sucesso!",null,"sucesso");
-
     let oContainer = document.getElementById("container_resultado")
     let oDivResultadoResumo = document.getElementById("resultado_resumo");
 

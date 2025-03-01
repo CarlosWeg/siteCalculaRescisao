@@ -4,12 +4,12 @@
 
         <div class="flex flex-col justify-start items-center space-y-2">
             <label for="salario_bruto" class="label">Salário Bruto*</label>
-            <input type="number" name="salario_bruto" id="salario_bruto" min="0" placeholder="R$:0,00" value="1500" required title="Informe o salário bruto" class="input">
+            <input type="text" name="salario_bruto" id="salario_bruto" min="0" placeholder="R$:0,00" required title="Informe o salário bruto" class="input">
         </div>
 
         <div class="flex flex-col justify-start items-center space-y-2">
             <label for = "saldo_fgts_antes" class="label">Saldo do FGTS antes da contratação</label>
-            <input type = "number" name = "saldo_fgts_antes" id = "saldo_fgts_antes" min = "0" placeholder = "R$:0,00" title = "Informe o saldo de FGTS anterior a contratação" class="input">
+            <input type = "text" name = "saldo_fgts_antes" id = "saldo_fgts_antes" min = "0" placeholder = "R$:0,00" title = "Informe o saldo de FGTS anterior a contratação" class="input">
         </div>
 
     </div>
@@ -18,12 +18,12 @@
 
         <div class="flex flex-col justify-start items-center space-y-2">
             <label for="data_contratacao" class="label">Data de contratação*</label>
-            <input type="date" name="data_contratacao" id="data_contratacao" value="2020-01-01" required title="Informe a data de contratação" class="input">
+            <input type="date" name="data_contratacao" id="data_contratacao" required title="Informe a data de contratação" class="input">
         </div>
 
         <div class="flex flex-col justify-start items-center space-y-2">
             <label for="data_demissao" class="label">Data de demissão*</label>
-            <input type="date" name="data_demissao" id="data_demissao" value="2021-01-01" required title="Informe a data de demissão" class="input">
+            <input type="date" name="data_demissao" id="data_demissao" required title="Informe a data de demissão" class="input">
         </div>
 
     </div>
@@ -42,7 +42,7 @@
 
         <div class="flex flex-col justify-start items-center space-y-2">
             <label for="tipo_aviso_previo" class="label">Tipo de aviso prévio*</label>
-            <select id="tipo_aviso_previo" name="tipo_aviso_previ o" required title="Selecione o tipo de aviso prévio" class="input">
+            <select id="tipo_aviso_previo" name="tipo_aviso_previo" required title="Selecione o tipo de aviso prévio" class="input">
                 <option value="trabalhado">Trabalhado</option>
                 <option value="indenizado">Indenizado</option>
             </select>

@@ -8,6 +8,7 @@ class HeadUtil{
     private $oMetaTags;
     private $aLinksCss = [];
     private $aLinksJs = [];
+    private $sLinkIcon = '';
 
     public function __construct(MetaTagsUtil $oMetaTags){
         $this->oMetaTags = $oMetaTags ?? new MetaTags();
@@ -21,6 +22,10 @@ class HeadUtil{
         $this->aLinksJs[] = $sCaminho;
     }
 
+    public function adicionarLinkIcon($sCaminho){
+        $this->sLinkIcon = $sCaminho;
+    }
+
     public function renderizar(){
 
         echo '<!DOCTYPE html>';
@@ -31,6 +36,10 @@ class HeadUtil{
 
         foreach($this->aLinksCss as $css){
             echo "\n<link href='{$css}' rel='stylesheet'>";
+        }
+
+        if ($this->sLinkIcon !== ''){
+            echo "\n<link rel='icon' href='{$this->sLinkIcon}' type='image/x-icon'>";
         }
 
         foreach($this->aLinksJs as $js){
