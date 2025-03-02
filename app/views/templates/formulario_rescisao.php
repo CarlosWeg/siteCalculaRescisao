@@ -18,12 +18,12 @@
 
         <div class="flex flex-col justify-start items-center space-y-2">
             <label for="data_contratacao" class="label">Data de contratação*</label>
-            <input type="date" name="data_contratacao" id="data_contratacao" required title="Informe a data de contratação" class="input">
+            <input type="date" name="data_contratacao" id="data_contratacao" min="1990-01-01" max="2035-12-31" required title="Informe a data de contratação" class="input">
         </div>
 
         <div class="flex flex-col justify-start items-center space-y-2">
             <label for="data_demissao" class="label">Data de demissão*</label>
-            <input type="date" name="data_demissao" id="data_demissao" required title="Informe a data de demissão" class="input">
+            <input type="date" name="data_demissao" id="data_demissao" min="1990-01-01" max="2035-12-31" required title="Informe a data de demissão" class="input">
         </div>
 
     </div>

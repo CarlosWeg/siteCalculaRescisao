@@ -39,7 +39,7 @@ class HeadUtil{
         }
 
         if ($this->sLinkIcon !== ''){
-            echo "\n<link rel='icon' href='{$this->sLinkIcon}' type='image/x-icon'>";
+            echo "\n<link rel='icon' href='{$this->sLinkIcon}' type='image/png'>";
         }
 
         foreach($this->aLinksJs as $js){

@@ -7,6 +7,8 @@ use App\Utils\GerenciadorMensagemUtil;
 use App\Utils\enviarRetornoUtil;
 
 class CalculoRescisaoController extends BaseController{
+    private const ANO_MIN = 1990;
+    private const ANO_LIMITE = 2035;
 
     public function __construct(){
         parent::__construct();
@@ -31,7 +33,8 @@ class CalculoRescisaoController extends BaseController{
 
         foreach ($aCamposObrigatorios as $sCampo){
             if (!isset($aDadosSanitizados[$sCampo]) || empty($aDadosSanitizados[$sCampo])){
-                throw new \Exception('Campo obrigatório não fornecido: {$sCampo}');
+                $sCampo = obterNomeCampo($sCampo);
+                throw new \Exception("Campo obrigatório não fornecido : {$sCampo}");
             }
         }
 
@@ -57,6 +60,14 @@ class CalculoRescisaoController extends BaseController{
             throw new \Exception('Data de contratação não pode ser superior a data de demissão');
         }
 
+        if ($aDadosSanitizados['data_contratacao']->format('Y') > self::ANO_LIMITE || $aDadosSanitizados['data_demissao']->format('Y') > self::ANO_LIMITE){
+            throw new \Exception('Datas não podem ser superiores a ' . self::ANO_LIMITE);
+        }
+
+        if ($aDadosSanitizados['data_contratacao']->format('Y') < self::ANO_MIN || $aDadosSanitizados['data_demissao']->format('Y') < self::ANO_MIN){
+            throw new \Exception('Datas não podem ser inferiores a ' . self::ANO_MIN);
+        }
+
         if ($aDadosSanitizados['numero_dependentes'] < 0){
             throw new \Exception('Número de dependentes não pode ser negativo');
         }
@@ -76,9 +87,31 @@ class CalculoRescisaoController extends BaseController{
             ]);
         
         } catch (\Exception $e){
-            enviarRetornoUtil::enviarErro('Erro ao calcular a rescisão:' . $e->getMessage());
+            enviarRetornoUtil::enviarErro($e->getMessage());
         }
 
+    }
+
+    private function obterNomeCampo($sCampo){
+        switch($sCampo){
+            case 'salario_bruto':
+                return 'Salário Bruto';
+            
+            case 'data_contratacao':
+                return 'Data de Contratação';
+
+            case 'data_demissao':
+                return 'Data de Demissão';
+
+            case 'motivo_rescisao':
+                return 'Motivo da Rescisão';
+
+            case 'tipo_aviso_previo':
+                return 'Tipo de Aviso Prévio';
+
+            default:
+                return $sCampo;
+        }
     }
 
 }

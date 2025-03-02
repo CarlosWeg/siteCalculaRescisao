@@ -13,6 +13,8 @@ let oResultadoCalculo = null;
 let bResultadosVisiveis = false;
 
 async function validarFormularioRescisao(){
+    event.preventDefault(); // Impede que o formulário seja submetido e resete a página
+
     let oSalarioBruto = document.getElementById("salario_bruto");
     let oDataContratacao = document.getElementById("data_contratacao");
     let oDataDemissao = document.getElementById("data_demissao");
@@ -21,9 +23,6 @@ async function validarFormularioRescisao(){
     let oSaldoFgtsAntes = document.getElementById("saldo_fgts_antes");
     let oNumeroDependentes = document.getElementById("numero_dependentes");
     let oFeriasVencidas = document.getElementById("ferias_vencidas");
-    let oMensagem = document.getElementById("mensagem_sistema");
-
-    let oForm = document.getElementById("formulario_rescisao"); 
     
     let sTexto = "";
 
@@ -107,7 +106,6 @@ async function validarFormularioRescisao(){
             exibirResultado();
             definirAviso("Simulação realizada com sucesso!<br>Confira o resultado.",null,"sucesso");
             scrollSection('resultado_resumo');
-            oForm.reset();
         }
 
     }
@@ -188,7 +186,7 @@ async function enviarDadosRescisao(oDados){
 
     } catch (e){
         console.error("Falha na requisição: ", e.message);
-        definirAviso(`Erro ao calcular: ${e.message}`,null,"erro");
+        definirAviso(`Erro ao calcular - ${e.message}`,null,"erro");
         return false;
     }
 }

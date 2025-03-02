@@ -12,6 +12,7 @@ class CalculoRescisaoModel{
     private $iNumeroDependentes;
     private $bFeriasVencidas;
     private $aTempoTrabalhado;
+    private const ALIQUOTA_FGTS = 0.08;
 
     public function __construct($aDados){
 
@@ -42,18 +43,49 @@ class CalculoRescisaoModel{
     }
 
     private function calcularDecimoTerceiro(){
-        $iMesesTrabalhados = $this->dDataDemissao->format('m');
+        $iAnoContratacao = (int)$this->dDataContratacao->format('Y');
+        $iAnoDemissao = (int)$this->dDataDemissao->format('Y');
+
+        // Se a contratação foi no mesmo ano da demissão
+        if ($iAnoContratacao == $iAnoDemissao){
+            $iMesContratacao = (int)$this->dDataContratacao->format('m');
+            $iMesDemissao = (int)$this->dDataDemissao->format('m');
+
+            // Se alguém foi contratado em maio (mês 5) e demitido em agosto (mês 8), a diferença seria 8 - 5 = 3, indicando junho, julho e agosto. No entanto, isso ignora o mês de contratação (maio).
+            // Por isso, + 1
+
+            $iMesesTrabalhados = $iMesDemissao - $iMesContratacao + 1;
+
+        // Se a contratação foi em anos anteriores
+        } else {
+            $iMesesTrabalhados = $this->dDataDemissao->format('m');
+        }
+
+        if ($this->dDataDemissao->format('d')<15){
+            $iMesesTrabalhados--;    
+        }
+
+        // Para garantir que o valor nunca será negativo
+        $iMesesTrabalhados = max(0,$iMesesTrabalhados);
+
         return ($this->fSalarioBruto / 12) * $iMesesTrabalhados;
     }  
 
     private function calcularFerias(){
         $aTempoServico = $this->calcularTempoServico();
+        $iMeses = $aTempoServico['meses'];
         $fValorFerias = $this->fSalarioBruto;
+
+
+        // Considerar dias trabalhados no último mês
+        if ($aTempoServico['dias'] > 14){
+            $iMeses++;
+        }
 
         // Calcula o valor do terço constitucional sobre as férias.
         $fTercoFerias = $fValorFerias / 3;
 
-        $fFeriasProporcionais = ($fValorFerias / 12) * $aTempoServico['meses'];
+        $fFeriasProporcionais = ($fValorFerias / 12) * $iMeses;
         $fTercoFeriasProporcionais =$fFeriasProporcionais / 3;
         
         // Retorna um array com dois valores: 
@@ -73,10 +105,22 @@ class CalculoRescisaoModel{
         return 0;
     }
 
-    private function calcularFgts(){
-        $fDepositoMensais = $this->fSalarioBruto * 0.08;
-        $fTotalDepositado = $fDepositoMensais * ($this->aTempoTrabalhado['anos'] * 12 + $this->aTempoTrabalhado['meses']);
-        $fSaldoTotal = $fTotalDepositado + $this->fSaldoFgtsAntes;
+    private function calcularFgts($aFerias,$fDecimoTerceiro){
+
+        // FGTS sobre férias (proporcionais e vencidas)
+        $fFgtsFerias = ($aFerias['ferias_proporcionais'] + $aFerias['ferias_vencidas']) * self::ALIQUOTA_FGTS;
+
+        // FGTS sobre 13
+        $fFgtsDecimoTerceiro = $fDecimoTerceiro * self::ALIQUOTA_FGTS;
+
+        // FGTS sobre salário mensal
+        $fDepositoMensais = $this->fSalarioBruto * self::ALIQUOTA_FGTS;
+
+        // Total fgts sobre o salário mensal nos meses trabalhados
+        $iMeses = $this->aTempoTrabalhado['anos'] * 12 + $this->aTempoTrabalhado['meses'];
+        $fTotalDepositadoTempo = $fDepositoMensais * $iMeses;
+
+        $fSaldoTotal = $fTotalDepositadoTempo + $fFgtsDecimoTerceiro + $fFgtsFerias + $this->fSaldoFgtsAntes;
 
         $fMultaFgts = 0;
 
@@ -96,11 +140,14 @@ class CalculoRescisaoModel{
     }
 
     private function calcularInss($fValor){
+        // Verbas indenizatórias não entram na base do INSS
+        $fBaseInss = $fValor - $this->calcularAvisoPrevio();
+
         //Tabela INSS 2025
-        if ($fValor <= 1518.00) return ($fValor * 0.075) - 0;
-        if ($fValor <= 2793.88) return ($fValor * 0.09) - 22.77;
-        if ($fValor <= 4190.83) return ($fValor * 0.12) - 106.6;
-        if ($fValor <= 8157.41) return ($fValor * 0.14) - 190.4;
+        if ($fBaseInss <= 1518.00) return ($fBaseInss * 0.075) - 0;
+        if ($fBaseInss <= 2793.88) return ($fBaseInss * 0.09) - 22.77;
+        if ($fBaseInss <= 4190.83) return ($fBaseInss * 0.12) - 106.6;
+        if ($fBaseInss <= 8157.41) return ($fBaseInss * 0.14) - 190.4;
         
         return 951.63;
 
@@ -126,13 +173,16 @@ class CalculoRescisaoModel{
         $fDecimoTerceiro = $this->calcularDecimoTerceiro();
         $aFerias = $this->calcularFerias();
         $fAvisoPrevio = $this->calcularAvisoPrevio();
-        $aFgts = $this->calcularFgts();
+        $aFgts = $this->calcularFgts($aFerias,$fDecimoTerceiro);
 
         $fProventos = $fSaldoSalario + $fDecimoTerceiro + $aFerias['ferias_vencidas'] +
                       $aFerias['ferias_proporcionais'] + $fAvisoPrevio;
-        
+            
         $fInss = $this->calcularInss($fProventos);
-        $fIrrf = $this->calcularIrrf($fProventos - $fInss);
+
+        // Não há irf sobre verbas indenizatórias
+        $fBaseIrrf = $fProventos - $fAvisoPrevio - $fInss;
+        $fIrrf = $this->calcularIrrf($fBaseIrrf);
 
         $fDescontos = $fInss + $fIrrf;
         
