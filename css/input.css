@@ -414,7 +414,8 @@
 
     .mensagem_sistema {
         @apply fixed
-               top-28
+               top-4
+               md:top-28
                right-3
                z-50
                text-left
@@ -422,19 +423,17 @@
                items-center
                gap-2
                w-fit
-               max-w-72
-               md:max-w-[420px]
-               bg-white
+               max-w-[calc-(100vw-24px)]
+               md:max-w-[460px]
+               bg-white/90
                border-2
                border-blue-500
-               backdrop-blur
                py-3
                px-5
                text-blue-800
                font-medium
                rounded-lg
                shadow-md
-
     }
 
     .animacao-fade-out{
